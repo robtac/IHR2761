@@ -22,7 +22,7 @@ import org.opencv.objdetect.*;
 * @author GRIP
 */
 public class GripPipeline {
-	
+
 	//Outputs
 	private Mat hslThresholdOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
@@ -38,9 +38,9 @@ public class GripPipeline {
 	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {77.6978417266187, 92.45733788395904};
-		double[] hslThresholdSaturation = {171.98741007194243, 255.0};
-		double[] hslThresholdLuminance = {43.57014388489208, 255.0};
+		double[] hslThresholdHue = {82.53472341039301, 104.67744989068166};
+		double[] hslThresholdSaturation = {52.74280575539568, 255.0};
+		double[] hslThresholdLuminance = {20.638489208633093, 233.35314091680814};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step Find_Contours0:
@@ -50,13 +50,13 @@ public class GripPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 125.0;
+		double filterContoursMinArea = 100.0;
 		double filterContoursMinPerimeter = 0.0;
-		double filterContoursMinWidth = 0.0;
+		double filterContoursMinWidth = 11.0;
 		double filterContoursMaxWidth = 1000.0;
-		double filterContoursMinHeight = 0.0;
+		double filterContoursMinHeight = 16.0;
 		double filterContoursMaxHeight = 1000.0;
-		double[] filterContoursSolidity = {0, 100};
+		double[] filterContoursSolidity = {82.73381294964031, 100.0};
 		double filterContoursMaxVertices = 1000000.0;
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.0;

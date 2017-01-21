@@ -78,7 +78,10 @@ public class Gears {
     // as they are expensive to create
     Mat inputImage = new Mat();
     Mat finalImage = new Mat();
-
+    
+    GripPipeline grip = new GripPipeline();
+    
+    NetworkTable table = NetworkTable.getTable("Gears"); 
     // Infinitely process image
     while (true) {
       // Grab a frame. If it has a frame time of 0, there was an error.
@@ -86,7 +89,7 @@ public class Gears {
       long frameTime = imageSink.grabFrame(inputImage);
       if (frameTime == 0) continue;
 
-      GripPipeline grip = new GripPipeline();
+      
       grip.process(inputImage);
       
       // Below is where you would do your OpenCV operations on the provided image
@@ -94,7 +97,9 @@ public class Gears {
       ArrayList<MatOfPoint> pointList = grip.filterContoursOutput();
       Mat image = new Mat();
       
-      System.out.println(pointList.toString());
+      table.putNumber("Number of Contours", pointList.size());
+//      table.putValue("Initial Image", inputImage);
+//      table.putValue("Processed Image", finalImage);
       //Mat finalImage = pointList.
       
       // Here is where you would write a processed image that you want to restreams
