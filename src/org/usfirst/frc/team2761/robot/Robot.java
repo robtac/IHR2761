@@ -37,8 +37,6 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		NetworkTable.setServerMode();
 		NetworkTable.initialize();
-		table = NetworkTable.getTable("Test");
-		table.putNumber("Test", 1);
 		oi = new OI();
 		chooser.addDefault("Default Auto", new TankDrive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
