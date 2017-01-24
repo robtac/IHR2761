@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team2761.robot.commands.Gears;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
 
 /**
@@ -17,6 +18,14 @@ public class OI {
 	
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
+	
+	public OI () {
+		
+	}
+	
+	static {
+		OI.leftTrigger.whileHeld(new Gears());
+	}
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
