@@ -1,7 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.wpi.first.wpilibj.networktables.*;
-import edu.wpi.first.wpilibj.tables.*;
 import edu.wpi.cscore.*;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
@@ -77,11 +77,11 @@ public class Gears {
     // All Mats and Lists should be stored outside the loop to avoid allocations
     // as they are expensive to create
     Mat inputImage = new Mat();
-    Mat finalImage = new Mat();
     
     GripPipeline grip = new GripPipeline();
     
     NetworkTable table = NetworkTable.getTable("Gears"); 
+    NetworkTable contourTable = NetworkTable.getTable("Gears");
     // Infinitely process image
     while (true) {
       // Grab a frame. If it has a frame time of 0, there was an error.
@@ -91,16 +91,42 @@ public class Gears {
 
       
       grip.process(inputImage);
-      
+      double[] imageSize = {inputImage.width(), inputImage.height()};
+      Point imageCenter = new Point(imageSize[0] / 2, imageSize[1] / 2);
+      table.putNumberArray("Image Size", imageSize);
       // Below is where you would do your OpenCV operations on the provided image
       // The sample below just changes color source to HSV
-      ArrayList<MatOfPoint> pointList = grip.filterContoursOutput();
-      Mat image = new Mat();
-      
+      ArrayList<MatOfPoint> pointList = grip.convexHullsOutput();
       table.putNumber("Number of Contours", pointList.size());
-//      table.putValue("Initial Image", inputImage);
-//      table.putValue("Processed Image", finalImage);
-      //Mat finalImage = pointList.
+      ArrayList<Point> centerList = new ArrayList<Point>();
+      for (int i = 0; i < pointList.size(); i++) {
+    	  contourTable = (NetworkTable) table.getSubTable("Contour " + (i + 1));
+    	  
+    	  Rect rect = Imgproc.boundingRect(pointList.get(i));
+    	  double[] size = {rect.width, rect.height};
+    	  contourTable.putNumberArray("Size", size);
+    	  double[] center = {rect.width / 2 + rect.x, rect.height / 2 + rect.y};
+    	  contourTable.putNumberArray("Center", center);
+    	  centerList.add(new Point(center[0], center[1]));
+    	  
+    	  Scalar color = new Scalar(0, 0, 255);
+    	  Imgproc.rectangle(inputImage, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), color, 2);
+      }
+      
+      Point gearCenter = new Point(0,0);
+      for (Point center: centerList) {
+    	  gearCenter.x = gearCenter.x + center.x;
+    	  gearCenter.y = gearCenter.y + center.y;
+      }
+      gearCenter.x = gearCenter.x / (centerList.size());
+      gearCenter.y = gearCenter.y / (centerList.size());
+      double[] gearCenterArray = {gearCenter.x, gearCenter.y};
+      table.putNumberArray("Gear Center", gearCenterArray);
+      double[] centerDifference = {imageCenter.x - gearCenter.x, imageCenter.y - gearCenter.y};
+      table.putNumberArray("Center Difference", centerDifference);
+      
+      Scalar color = new Scalar(0, 0, 255);
+      Imgproc.circle(inputImage, gearCenter, 1, color, 3);
       
       // Here is where you would write a processed image that you want to restreams
       // This will most likely be a marked up image of what the camera sees
@@ -109,44 +135,7 @@ public class Gears {
     }
   }
 
-  private static HttpCamera setHttpCamera(String cameraName, MjpegServer server) {
-    // Start by grabbing the camera from NetworkTables
-    NetworkTable publishingTable = NetworkTable.getTable("CameraPublisher");
-    // Wait for robot to connect. Allow this to be attempted indefinitely
-    while (true) {
-      try {
-        if (publishingTable.getSubTables().size() > 0) {
-          break;
-        }
-        Thread.sleep(500);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-
-    HttpCamera camera = null;
-    if (!publishingTable.containsSubTable(cameraName)) {
-      return null;
-    }
-    ITable cameraTable = publishingTable.getSubTable(cameraName);
-    String[] urls = cameraTable.getStringArray("streams", null);
-    if (urls == null) {
-      return null;
-    }
-    ArrayList<String> fixedUrls = new ArrayList<String>();
-    for (String url : urls) {
-      if (url.startsWith("mjpg")) {
-        fixedUrls.add(url.split(":", 2)[1]);
-      }
-    }
-    camera = new HttpCamera("CoprocessorCamera", fixedUrls.toArray(new String[0]));
-    server.setSource(camera);
-    return camera;
-  }
-
-  private static UsbCamera setUsbCamera(int cameraId, MjpegServer server) {
+private static UsbCamera setUsbCamera(int cameraId, MjpegServer server) {
     // This gets the image from a USB camera 
     // Usually this will be on device 0, but there are other overloads
     // that can be used
