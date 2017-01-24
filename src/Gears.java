@@ -121,9 +121,9 @@ public class Gears {
       gearCenter.x = gearCenter.x / (centerList.size());
       gearCenter.y = gearCenter.y / (centerList.size());
       double[] gearCenterArray = {gearCenter.x, gearCenter.y};
-      table.putNumberArray("Gear Center", gearCenterArray);
+      table.putNumberArray("GearCenter", gearCenterArray);
       double[] centerDifference = {imageCenter.x - gearCenter.x, imageCenter.y - gearCenter.y};
-      table.putNumberArray("Center Difference", centerDifference);
+      table.putNumberArray("CenterDifference", centerDifference);
       
       Scalar color = new Scalar(0, 0, 255);
       Imgproc.circle(inputImage, gearCenter, 1, color, 3);
