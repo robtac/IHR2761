@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class Gears extends Command {
 
 	DriveTrain tank;
-	NetworkTable table, gearTable;
+	NetworkTable table;
 	double[] centerDifference, imageSize;
 	
     public Gears() {
@@ -22,21 +22,25 @@ public class Gears extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	table = NetworkTable.getTable("Gears");
-    	gearTable = NetworkTable.getTable("Gears");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	visionAlign();
+    	Boolean isValid = table.getBoolean("isValid");
+    	if (isValid) {
+    		visionAlign();
+    	} else {
+    		tank.drive(0, 0);
+    	}
     }
 
     private void visionAlign () {
-    	centerDifference = gearTable.getNumberArray("CenterDifference");
-    	imageSize = gearTable.getNumberArray("Image Size");
+    	centerDifference = table.getNumberArray("CenterDifference");
+    	imageSize = table.getNumberArray("Image Size");
     	double[] imageCenter = {imageSize[0] / 2, imageSize[1] / 2};
     	double percentageX = centerDifference[0] / imageCenter[0];
     	System.out.println("Percentage X: " + percentageX);
-    	tank.drive(percentageX * 0.5, -percentageX * 0.5);
+    	tank.drive(percentageX * 0.35, (percentageX * 0.35));
     }
     
     // Make this return true when this Command no longer needs to run execute()
