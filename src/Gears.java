@@ -99,6 +99,11 @@ public class Gears {
       ArrayList<MatOfPoint> pointList = grip.convexHullsOutput();
       table.putNumber("Number of Contours", pointList.size());
       ArrayList<Point> centerList = new ArrayList<Point>();
+      if (pointList.size() >= 2 && pointList.size() <= 2) {
+    	  table.putBoolean("isValid", true);
+      } else {
+    	  table.putBoolean("isValid", false);
+      }
       for (int i = 0; i < pointList.size(); i++) {
     	  contourTable = (NetworkTable) table.getSubTable("Contour " + (i + 1));
     	  
