@@ -27,18 +27,18 @@ public class Gears extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	centerDifference = gearTable.getNumberArray("Center Difference");
-    	imageSize = gearTable.getNumberArray("Image Size");
-    	double[] imageCenter = {imageSize[0] / 2, imageSize[1] / 2};
-    	double percentageX = imageCenter[0] / centerDifference[0];
-    	System.out.println("Percentage X: " + percentageX);
-    	if (percentageX > 0) {
-    		//tank.drive(20, -20);
-    	} else if (percentageX < 0) {
-    		//tank.drive(-20, 20);
-    	}
+    	visionAlign();
     }
 
+    private void visionAlign () {
+    	centerDifference = gearTable.getNumberArray("CenterDifference");
+    	imageSize = gearTable.getNumberArray("Image Size");
+    	double[] imageCenter = {imageSize[0] / 2, imageSize[1] / 2};
+    	double percentageX = centerDifference[0] / imageCenter[0];
+    	System.out.println("Percentage X: " + percentageX);
+    	tank.drive(percentageX * 0.5, -percentageX * 0.5);
+    }
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

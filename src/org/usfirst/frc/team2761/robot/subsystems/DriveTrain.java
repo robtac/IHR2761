@@ -32,6 +32,8 @@ public class DriveTrain extends Subsystem {
 //		backLeftDrive.configMaxOutputVoltage(10);
 //		backRightDrive.configMaxOutputVoltage(10);
 
+		driveTrain.setSafetyEnabled(false);
+		
 	}
 	
 	public static DriveTrain getInstance()
@@ -46,7 +48,7 @@ public class DriveTrain extends Subsystem {
 	
 	public void drive(double leftSpeed, double rightSpeed)
 	{
-//		driveTrain.tankDrive(leftSpeed, rightSpeed);
+		//driveTrain.tankDrive(leftSpeed, rightSpeed);
 
 		frontLeftDrive.set(leftSpeed);
 		backLeftDrive.set(leftSpeed);

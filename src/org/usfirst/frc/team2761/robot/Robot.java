@@ -35,8 +35,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		NetworkTable.setServerMode();
-		NetworkTable.initialize();
+		//NetworkTable.setServerMode();
+		//NetworkTable.initialize();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new TankDrive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -100,8 +100,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		if (autonomousCommand != null) autonomousCommand.cancel();
 		teleopDrive.start();
 	}
 
