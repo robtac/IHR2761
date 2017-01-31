@@ -60,7 +60,9 @@ public class Gears {
     // that can be used
     UsbCamera camera = setUsbCamera(0, inputStream);
     // Set the resolution for our camera, since this is over USB
-    camera.setResolution(640,480);
+    //camera.setExposureAuto();
+    camera.setExposureManual(35);
+    camera.setResolution(320,240);
     
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
@@ -84,11 +86,13 @@ public class Gears {
     NetworkTable contourTable = NetworkTable.getTable("Gears");
     // Infinitely process image
     while (true) {
+    	long startTime = System.currentTimeMillis();
       // Grab a frame. If it has a frame time of 0, there was an error.
       // Just skip and continue
       long frameTime = imageSink.grabFrame(inputImage);
       if (frameTime == 0) continue;
 
+      //Imgproc.resize(inputImage, inputImage, new Size(320, 240));
       
       grip.process(inputImage);
       double[] imageSize = {inputImage.width(), inputImage.height()};
@@ -133,6 +137,7 @@ public class Gears {
       Scalar color = new Scalar(0, 0, 255);
       Imgproc.circle(inputImage, gearCenter, 1, color, 3);
       
+      table.putNumber("Time to process", System.currentTimeMillis() - startTime);
       // Here is where you would write a processed image that you want to restreams
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
