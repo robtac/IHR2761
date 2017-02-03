@@ -6,6 +6,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.Gears;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
+import org.usfirst.frc.team2761.robot.commands.setPID;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import edu.wpi.first.wpilibj.command.Command;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -13,19 +20,27 @@ import org.usfirst.frc.team2761.robot.commands.TankDrive;
  */
 public class OI {
 	
+	
+	
 	public static Joystick leftJoystick = new Joystick(0);
 	public static JoystickButton leftTrigger = new JoystickButton(leftJoystick, 1);
 	
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
 	
-	public OI () {
-		
-	}
 	
 	static {
 		OI.leftTrigger.whileHeld(new Gears());
+		
+		
+		SmartDashboard.putNumber("P", RobotMap.Pvalue);
+		SmartDashboard.putNumber("I", RobotMap.Ivalue);
+		SmartDashboard.putNumber("D", RobotMap.Dvalue);
+		SmartDashboard.putData("Set PID Values", new setPID());
 	}
+	
+	
+	
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
