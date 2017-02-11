@@ -1,17 +1,12 @@
 package org.usfirst.frc.team2761.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.Gears;
-import org.usfirst.frc.team2761.robot.commands.TankDrive;
-import org.usfirst.frc.team2761.robot.commands.setPID;
-
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import org.usfirst.frc.team2761.robot.commands.SetShooter;
+import org.usfirst.frc.team2761.robot.commands.Shoot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
@@ -31,12 +26,14 @@ public class OI {
 	
 	static {
 		OI.leftTrigger.whileHeld(new Gears());
+		OI.rightTrigger.whileHeld(new Shoot());
 		
 		
-		SmartDashboard.putNumber("P", RobotMap.Pvalue);
-		SmartDashboard.putNumber("I", RobotMap.Ivalue);
-		SmartDashboard.putNumber("D", RobotMap.Dvalue);
-		SmartDashboard.putData("Set PID Values", new setPID());
+		SmartDashboard.putNumber("P", RobotMap.shooterP);
+		SmartDashboard.putNumber("I", RobotMap.shooterD);
+		SmartDashboard.putNumber("D", RobotMap.shooterD);
+		SmartDashboard.putNumber("ShooterSpeed", RobotMap.shooterSpeed);
+		SmartDashboard.putData("Set PID Values", new SetShooter());
 	}
 	
 	

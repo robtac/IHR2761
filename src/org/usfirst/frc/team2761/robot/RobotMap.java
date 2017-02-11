@@ -17,14 +17,13 @@ public class RobotMap {
 	public static int frontLeftDrive = 2;
 	public static int backRightDrive = 14;
 	public static int frontRightDrive = 13;
+	public static int shooterMotor = 12;
 	
-	static double P;
-	static double I;
-	static double D;	
-	
-	public static double Pvalue = P;
-    public static double Ivalue = I;
-    public static double Dvalue = D;    	
+	public static double shooterF = 0.0319;
+	public static double shooterP = 1.100;
+    public static double shooterI = 0.001;
+    public static double shooterD = 0.600; 
+    public static double shooterSpeed = 4000;
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

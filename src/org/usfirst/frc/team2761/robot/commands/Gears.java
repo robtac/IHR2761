@@ -15,17 +15,18 @@ public class Gears extends Command {
 	double[] centerDifference, imageSize;
 	
     public Gears() {
+    	table = NetworkTable.getTable("Gears");
     	tank = DriveTrain.getInstance();
         requires(tank);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	table = NetworkTable.getTable("Gears");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Gears is executing");
     	Boolean isValid = table.getBoolean("isValid");
     	if (isValid) {
     		visionAlign();
