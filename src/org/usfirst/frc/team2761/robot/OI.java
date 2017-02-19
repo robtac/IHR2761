@@ -4,7 +4,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.Gears;
+import org.usfirst.frc.team2761.robot.commands.RunClimber;
+import org.usfirst.frc.team2761.robot.commands.RunPaddle;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
+import org.usfirst.frc.team2761.robot.subsystems.Paddle;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,11 +27,16 @@ public class OI {
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
 	
+	public static Joystick xbox = new Joystick(2);
+	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
+	public static JoystickButton buttonB = new JoystickButton(xbox, 2);
 	
 	static {
 		OI.leftTrigger.whileHeld(new Gears());
 		OI.rightTrigger.whileHeld(new Shoot());
 		
+		OI.buttonA.whileHeld(new RunPaddle());
+		OI.buttonB.whileHeld(new RunClimber());
 		
 		SmartDashboard.putNumber("P", RobotMap.shooterP);
 		SmartDashboard.putNumber("I", RobotMap.shooterD);
