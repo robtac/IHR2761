@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2761.robot.commands.Shoot;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
+import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 
 /**
  * The VM is configured to automatically run this class, and to call the

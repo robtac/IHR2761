@@ -16,6 +16,7 @@ public class Gears extends Command {
 	
     public Gears() {
     	table = NetworkTable.getTable("Gears");
+    	table.getBoolean("isValid", false);
     	tank = DriveTrain.getInstance();
         requires(tank);
     }
@@ -27,7 +28,7 @@ public class Gears extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("Gears is executing");
-    	Boolean isValid = table.getBoolean("isValid");
+    	Boolean isValid = table.getBoolean("isValid", false);
     	if (isValid) {
     		visionAlign();
     	} else {

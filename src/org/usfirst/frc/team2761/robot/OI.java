@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.Gears;
-import org.usfirst.frc.team2761.robot.commands.SetShooter;
-import org.usfirst.frc.team2761.robot.commands.Shoot;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
+import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -33,7 +34,7 @@ public class OI {
 		SmartDashboard.putNumber("I", RobotMap.shooterD);
 		SmartDashboard.putNumber("D", RobotMap.shooterD);
 		SmartDashboard.putNumber("ShooterSpeed", RobotMap.shooterSpeed);
-		SmartDashboard.putData("Set PID Values", new SetShooter());
+		SmartDashboard.putData("Set PID Values", new ShooterSet());
 	}
 	
 	
