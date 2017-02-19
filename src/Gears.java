@@ -4,6 +4,7 @@ import java.util.List;
 import edu.wpi.first.wpilibj.networktables.*;
 import edu.wpi.cscore.*;
 import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 public class Gears {
@@ -85,6 +86,9 @@ public class Gears {
     NetworkTable table = NetworkTable.getTable("Gears"); 
     NetworkTable contourTable = NetworkTable.getTable("Gears");
     // Infinitely process image
+    
+    int imageNumber = 0;
+    table.putBoolean("takeImage", false);
     while (true) {
     	long startTime = System.currentTimeMillis();
       // Grab a frame. If it has a frame time of 0, there was an error.
@@ -142,6 +146,13 @@ public class Gears {
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
       imageSource.putFrame(inputImage);
+      
+      if (table.getBoolean("takeImage", false)) {
+    	  String filename = "image" + imageNumber + ".png"; imageNumber++;
+    	    System.out.println(String.format("Writing %s", filename));
+    	    Imgcodecs.imwrite(filename, inputImage);
+    	    table.putBoolean("takeImage", false);
+      }
     }
   }
 
