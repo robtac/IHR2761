@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	Command teleopDrive;
 
+	ShooterCalibrate shooterCalibrate;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -37,6 +39,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		//NetworkTable.setServerMode();
 		//NetworkTable.initialize();
+		shooterCalibrate = new ShooterCalibrate();
+		
 		oi = new OI();
 		chooser.addDefault("Default Auto", new TankDrive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -72,6 +76,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		shooterCalibrate.start();
+		
 		autonomousCommand = chooser.getSelected();
 
 		/*

@@ -22,36 +22,15 @@ public class Shooter extends Subsystem {
 	private static Shooter instance = new Shooter();
 	
 	public CANTalon shooterMotor = new CANTalon(RobotMap.shooterMotor, 1);
-	public CANTalon shooterAngleX = new CANTalon(RobotMap.shooterAngleX);
-	
-	public DigitalInput magHallX1 = new DigitalInput(RobotMap.magHallX1);
-	public DigitalInput magHallX2 = new DigitalInput(RobotMap.magHallX2);
-	public DigitalInput magHallY = new DigitalInput(RobotMap.magHallY);
 	
 	public Shooter() {
+		System.out.println("Shooter const");
+		
 		shooterMotor.changeControlMode(TalonControlMode.Speed);
 		shooterMotor.setFeedbackDevice(FeedbackDevice.PulseWidth);
     	shooterMotor.setEncPosition(0);
     	shooterMotor.setF(RobotMap.shooterF);
 		setPIDShoot();
-		
-		shooterAngleX.changeControlMode(TalonControlMode.Position);
-		shooterAngleX.setFeedbackDevice(FeedbackDevice.PulseWidth);
-		shooterAngleX.setEncPosition(0);
-		shooterAngleX.setF(RobotMap.shooterAngleXF);
-		setPIDAngleX();
-	}
-	
-	public boolean getMagHallX1() {
-		return magHallX1.get();
-	}
-	
-	public boolean getMagHallX2() {
-		return magHallX2.get();
-	}
-	
-	public boolean getMagHallY() {
-		return magHallY.get();
 	}
 	
 	public void printSpeed() {
@@ -76,12 +55,6 @@ public class Shooter extends Subsystem {
 		shooterMotor.setP(RobotMap.shooterP);
 		shooterMotor.setI(RobotMap.shooterI);
 		shooterMotor.setD(RobotMap.shooterD);
-	}
-	
-	public void setPIDAngleX() {
-		shooterAngleX.setP(RobotMap.shooterAngleXP);
-		shooterAngleX.setI(RobotMap.shooterAngleXI);
-		shooterAngleX.setD(RobotMap.shooterAngleXD);
 	}
 	
 	public static Shooter getInstance() {

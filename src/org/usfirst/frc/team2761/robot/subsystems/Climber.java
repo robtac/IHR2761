@@ -3,6 +3,7 @@ package org.usfirst.frc.team2761.robot.subsystems;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,7 +21,8 @@ public class Climber extends Subsystem {
 	CANTalon climberRoller = new CANTalon (RobotMap.climbRoller);
 	
 	public Climber() {
-		
+		climber.changeControlMode(TalonControlMode.PercentVbus);
+		climberRoller.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	public static Climber getInstance () {
@@ -33,7 +35,7 @@ public class Climber extends Subsystem {
 		System.out.println(negSpeed);
 		climber.set(speed);
 		
-		climberRoller.set(negSpeed);
+		climberRoller.set(speed);
 	}
 	
 	public void stop() {

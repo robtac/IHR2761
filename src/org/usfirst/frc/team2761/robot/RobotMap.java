@@ -25,9 +25,8 @@ public class RobotMap {
 	public static int shooterAngleX = 5;
 	public static int shooterAngleY = 4;
 	
-	public static int magHallX1 = 0;
-	public static int magHallX2 = 1;
-	public static int magHallY = 2;
+	public static int magHallX = 0;
+	public static int magHallY = 1;
 	
 //	public static double shooterF = 0.0319;
 	public static double shooterF = 0.025;
