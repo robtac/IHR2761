@@ -23,6 +23,7 @@ public class Shooter extends Subsystem {
 	
 	public CANTalon shooterMotor = new CANTalon(RobotMap.shooterMotor, 1);
 	
+	// Initializes the main shooter motor and talon
 	public Shooter() {
 		System.out.println("Shooter const");
 		
@@ -33,6 +34,7 @@ public class Shooter extends Subsystem {
 		setPIDShoot();
 	}
 	
+	// Prints out the motor speed to the console
 	public void printSpeed() {
 		double motorVelocity = (int) (shooterMotor.getPulseWidthVelocity() * ENCODERVELOCITY);
     	System.out.println("Is executing at: " + motorVelocity + " rpm");
@@ -41,26 +43,31 @@ public class Shooter extends Subsystem {
     	SmartDashboard.putNumber("Actual Shooter Speed Number", motorVelocity);
 	}
 	
+	// Sets the motor to the desired speed
 	public void setSpeed(double speed) {
 		shooterMotor.set(speed);
 	}
 
+	// Stops the motor abruptly
 	public void stop() {
 		shooterMotor.set(0);
 		shooterMotor.disable();
 		shooterMotor.enable();
 	}
 	
+	// Sets the PIDs for the main shooter motor
 	public void setPIDShoot() {
 		shooterMotor.setP(RobotMap.shooterP);
 		shooterMotor.setI(RobotMap.shooterI);
 		shooterMotor.setD(RobotMap.shooterD);
 	}
 	
+	// Returns the instance of the main subsystem
 	public static Shooter getInstance() {
 		return instance;
 	}
 	
+	// Sets the default running command
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

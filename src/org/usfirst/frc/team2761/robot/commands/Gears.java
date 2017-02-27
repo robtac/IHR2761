@@ -14,6 +14,7 @@ public class Gears extends Command {
 	NetworkTable table;
 	double[] centerDifference, imageSize;
 	
+	// Constructor for the command
     public Gears() {
     	table = NetworkTable.getTable("Gears");
     	table.getBoolean("isValid", false);
@@ -36,6 +37,7 @@ public class Gears extends Command {
     	}
     }
 
+    // Aligns the robot based on the NetworkTable values
     private void visionAlign () {
     	centerDifference = table.getNumberArray("CenterDifference");
     	imageSize = table.getNumberArray("Image Size");

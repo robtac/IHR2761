@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2761.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.Gears;
@@ -26,33 +27,42 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OI {
 	
 	
-	
+	// Initializes the joysticks and their buttons
 	public static Joystick leftJoystick = new Joystick(0);
 	public static JoystickButton leftTrigger = new JoystickButton(leftJoystick, 1);
 	
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
 	
-	public static Joystick xbox = new Joystick(2);
+	public static XboxController xbox = new XboxController(2);
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
 	public static JoystickButton buttonB = new JoystickButton(xbox, 2);
 	public static JoystickButton buttonX = new JoystickButton(xbox, 3);
 	public static JoystickButton bumperLeft = new JoystickButton(xbox, 5);
 	public static JoystickButton bumperRight = new JoystickButton(xbox, 6);
-//	public static JoystickAnalogButton xboxLeftTrigger = new JoystickAnalogButton(xbox, 2);
-//	public static JoystickAnalogButton xboxRightTrigger = new JoystickAnalogButton(xbox, 3);
 	
 	static {
+		// Dictates what the buttons do
 		OI.leftTrigger.whileHeld(new Gears());
 		OI.rightTrigger.whileHeld(new Shoot());
 		
 		OI.buttonA.whileHeld(new RunPaddle());
 		OI.buttonB.whileHeld(new RunClimber());
-		OI.buttonX.whileHeld(new ShooterAngleSet());
-		OI.bumperLeft.whileHeld(new ShooterYPos());
-		OI.bumperRight.whileHeld(new ShooterYNeg());
+		//OI.buttonX.whileHeld();
+		//OI.bumperLeft.whileHeld(new ShooterYPos());
+		//OI.bumperRight.whileHeld(new ShooterYNeg());
+		OI.xbox.lb.whileHeld(new ShooterAngleSet(1));
+		OI.xbox.rb.whileHeld(new ShooterAngleSet(5));
+		OI.xbox.dPad.down.whileHeld(new ShooterYNeg());
+		OI.xbox.dPad.downRight.whileHeld(new ShooterAngleSet(2));
+		OI.xbox.dPad.right.whileHeld(new ShooterAngleSet(3));
+		OI.xbox.dPad.upRight.whileHeld(new ShooterAngleSet(4));
+		OI.xbox.dPad.up.whileHeld(new ShooterYPos());
+		OI.xbox.dPad.upLeft.whileHeld(new ShooterAngleSet(6));
+		OI.xbox.dPad.left.whileHeld(new ShooterAngleSet(7));
+		OI.xbox.dPad.downLeft.whileHeld(new ShooterAngleSet(8));
 		
-		
+		// Publishes data to the SmartDashboard
 		SmartDashboard.putNumber("P", RobotMap.shooterP);
 		SmartDashboard.putNumber("I", RobotMap.shooterD);
 		SmartDashboard.putNumber("D", RobotMap.shooterD);

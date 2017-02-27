@@ -26,6 +26,7 @@ public class DriveTrain extends Subsystem {
 	CANTalon backRightDrive = new CANTalon (RobotMap.backRightDrive);
 	RobotDrive driveTrain = new RobotDrive(frontLeftDrive, backLeftDrive, frontRightDrive, backRightDrive);
 	
+	// Initializes the drive train
 	public DriveTrain() {
 //		frontLeftDrive.configMaxOutputVoltage(10);
 //		frontRightDrive.configMaxOutputVoltage(10);
@@ -36,16 +37,19 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	
+	// Returns the instance of this subsystem
 	public static DriveTrain getInstance()
 	{
 		return instance;
 	}
 	
+	// Drives the robot based on joystick input
 	public void tankDrive() 
 	{
 		driveTrain.tankDrive(OI.leftJoystick.getY() * -1, OI.rightJoystick.getY() * -1);
 	}
 	
+	// Drives the robot based on input speed
 	public void drive(double leftSpeed, double rightSpeed)
 	{
 		//driveTrain.tankDrive(leftSpeed, rightSpeed);
@@ -56,6 +60,7 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(rightSpeed);
 	}
 	
+	// Drives the robot at full speed forward
 	public void drive()
 	{
 		frontLeftDrive.set(1);
@@ -64,6 +69,7 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(1);
 	}
 	
+	// Sets the default running command
     public void initDefaultCommand(){
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

@@ -20,15 +20,18 @@ public class Climber extends Subsystem {
 	CANTalon climber = new CANTalon (RobotMap.climb);
 	CANTalon climberRoller = new CANTalon (RobotMap.climbRoller);
 	
+	// Sets the control mode of the talons
 	public Climber() {
 		climber.changeControlMode(TalonControlMode.PercentVbus);
 		climberRoller.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
+	// Returns the instance of this subsystem
 	public static Climber getInstance () {
 		return instance;
 	}
 	
+	// Sets the speed of the climber motors
 	public void setSpeed (double speed) {
 		System.out.println(speed);
 		double negSpeed = -speed;
@@ -38,6 +41,7 @@ public class Climber extends Subsystem {
 		climberRoller.set(speed);
 	}
 	
+	// Stops the motors abruptly
 	public void stop() {
 		climber.set(0);
 		climber.disable();
@@ -48,6 +52,7 @@ public class Climber extends Subsystem {
 		climberRoller.enable();
 	}
 	
+	// Sets the default running command
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

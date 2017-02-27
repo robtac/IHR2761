@@ -15,6 +15,7 @@ public class ShooterCalibrate extends Command {
 	
 	ShooterAngle shooterAngle;
 	
+	// Constructor for the command
     public ShooterCalibrate() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

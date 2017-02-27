@@ -11,6 +11,7 @@ public class RunClimber extends Command {
 
 	Climber climber;
 	
+	// Constructor for the command
     public RunClimber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

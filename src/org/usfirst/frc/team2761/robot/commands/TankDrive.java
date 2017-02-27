@@ -12,6 +12,7 @@ public class TankDrive extends Command {
 	
 	DriveTrain tank;
 	
+	// Constructor for the command
 	public TankDrive() {
 		// Use requires() here to declare subsystem dependencies
 		tank = DriveTrain.getInstance();

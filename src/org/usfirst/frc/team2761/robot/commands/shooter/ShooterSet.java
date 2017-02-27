@@ -13,6 +13,7 @@ public class ShooterSet extends Command {
 
 	Shooter shooter;
 	
+	// Constructor for the command
     public ShooterSet() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);    	

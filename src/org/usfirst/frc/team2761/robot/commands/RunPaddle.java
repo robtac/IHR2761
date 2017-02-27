@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RunPaddle extends Command {
 	
 	Paddle paddle;
-
+	
+	// Constructor for the command
     public RunPaddle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
