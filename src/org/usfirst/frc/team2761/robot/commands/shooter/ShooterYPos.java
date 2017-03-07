@@ -25,7 +25,8 @@ public class ShooterYPos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterAngle.setPositionY(0.25);
+    	shooterAngle.printValues();
+    	shooterAngle.setPositionY(shooterAngle.getPositionY() + 5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -33,7 +33,7 @@ public class Shoot extends Command {
     
     // Sets the speed of the shooter motor
     private void shootSpeed() {
-    	shooter.setSpeed(RobotMap.shooterSpeed);
+    	shooter.setSpeed(RobotMap.shooterSpeed / shooter.ENCODERVELOCITY);
     }
     
     // Sets speed of the motor based on RPM

@@ -24,6 +24,10 @@ public class Climber extends Subsystem {
 	public Climber() {
 		climber.changeControlMode(TalonControlMode.PercentVbus);
 		climberRoller.changeControlMode(TalonControlMode.PercentVbus);
+		climber.enableBrakeMode(true);
+		climberRoller.enableBrakeMode(true);
+		climber.setCurrentLimit(35);
+		climberRoller.setCurrentLimit(35);
 	}
 	
 	// Returns the instance of this subsystem

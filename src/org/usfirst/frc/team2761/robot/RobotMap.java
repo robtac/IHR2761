@@ -27,8 +27,8 @@ public class RobotMap {
 	public static int shooterAngleY = 4;
 	
 	// Sets the IDs of the MagHall sensors
-	public static int magHallX = 0;
-	public static int magHallY = 1;
+	public static int LimitX= 0;
+	public static int LimitY = 1;
 	
 	// Default PID values for the shooter
 	public static double shooterF = 0.025;
@@ -42,6 +42,11 @@ public class RobotMap {
 	public static double shooterAngleXP = 0.000;
     public static double shooterAngleXI = 0.000;
     public static double shooterAngleXD = 0.000;
+    
+    public static double shooterAngleYF = 0.025;
+	public static double shooterAngleYP = 0.000;
+    public static double shooterAngleYI = 0.000;
+    public static double shooterAngleYD = 0.000;
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

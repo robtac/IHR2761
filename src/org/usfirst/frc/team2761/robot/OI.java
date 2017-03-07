@@ -4,9 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team2761.robot.commands.Gears;
-import org.usfirst.frc.team2761.robot.commands.RunClimber;
-import org.usfirst.frc.team2761.robot.commands.RunPaddle;
+import org.usfirst.frc.team2761.robot.commands.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterXNeg;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterXPos;
@@ -15,6 +13,8 @@ import org.usfirst.frc.team2761.robot.commands.shooter.ShooterYPos;
 import org.usfirst.frc.team2761.robot.subsystems.Paddle;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleSet;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleXSetPID;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleYSetPID;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,6 +38,7 @@ public class OI {
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
 	public static JoystickButton buttonB = new JoystickButton(xbox, 2);
 	public static JoystickButton buttonX = new JoystickButton(xbox, 3);
+	public static JoystickButton buttonY = new JoystickButton(xbox, 4);
 	public static JoystickButton bumperLeft = new JoystickButton(xbox, 5);
 	public static JoystickButton bumperRight = new JoystickButton(xbox, 6);
 	
@@ -46,28 +47,39 @@ public class OI {
 		OI.leftTrigger.whileHeld(new Gears());
 		OI.rightTrigger.whileHeld(new Shoot());
 		
-		OI.buttonA.whileHeld(new RunPaddle());
-		OI.buttonB.whileHeld(new RunClimber());
-		//OI.buttonX.whileHeld();
-		//OI.bumperLeft.whileHeld(new ShooterYPos());
-		//OI.bumperRight.whileHeld(new ShooterYNeg());
+
+		OI.xbox.a.whileHeld(new RunClimberBackwards());
+		OI.xbox.b.whileHeld(new RunClimberFullSpeed());
+		OI.xbox.y.whileHeld(new RunClimber());
+		OI.xbox.start.whileHeld(new Shoot());
+		OI.xbox.back.whileHeld(new RunPaddle());
 		OI.xbox.lb.whileHeld(new ShooterAngleSet(1));
 		OI.xbox.rb.whileHeld(new ShooterAngleSet(5));
-		OI.xbox.dPad.down.whileHeld(new ShooterYNeg());
+		OI.xbox.dPad.down.whileHeld(new ShooterAngleSet(1));
 		OI.xbox.dPad.downRight.whileHeld(new ShooterAngleSet(2));
 		OI.xbox.dPad.right.whileHeld(new ShooterAngleSet(3));
 		OI.xbox.dPad.upRight.whileHeld(new ShooterAngleSet(4));
-		OI.xbox.dPad.up.whileHeld(new ShooterYPos());
+		OI.xbox.dPad.up.whileHeld(new ShooterAngleSet(5));
 		OI.xbox.dPad.upLeft.whileHeld(new ShooterAngleSet(6));
 		OI.xbox.dPad.left.whileHeld(new ShooterAngleSet(7));
 		OI.xbox.dPad.downLeft.whileHeld(new ShooterAngleSet(8));
 		
 		// Publishes data to the SmartDashboard
-		SmartDashboard.putNumber("P", RobotMap.shooterP);
-		SmartDashboard.putNumber("I", RobotMap.shooterD);
-		SmartDashboard.putNumber("D", RobotMap.shooterD);
+		SmartDashboard.putNumber("Shooter P", RobotMap.shooterP);
+		SmartDashboard.putNumber("Shooter I", RobotMap.shooterD);
+		SmartDashboard.putNumber("Shooter D", RobotMap.shooterD);
 		SmartDashboard.putNumber("ShooterSpeed", RobotMap.shooterSpeed);
-		SmartDashboard.putData("Set PID Values", new ShooterSet());
+		SmartDashboard.putData("Set Shooter PID Values", new ShooterSet());
+		
+		SmartDashboard.putNumber("Shooter Angle X P", RobotMap.shooterP);
+		SmartDashboard.putNumber("Shooter Angle X I", RobotMap.shooterI);
+		SmartDashboard.putNumber("Shooter Angle X D", RobotMap.shooterD);
+		SmartDashboard.putData("Set Shooter Angle X PID Values", new ShooterAngleXSetPID());
+		
+		SmartDashboard.putNumber("Shooter Angle Y P", RobotMap.shooterP);
+		SmartDashboard.putNumber("Shooter Angle Y I", RobotMap.shooterI);
+		SmartDashboard.putNumber("Shooter Angle Y D", RobotMap.shooterD);
+		SmartDashboard.putData("Set Shooter Y PID Values", new ShooterAngleYSetPID());
 	}
 	
 	

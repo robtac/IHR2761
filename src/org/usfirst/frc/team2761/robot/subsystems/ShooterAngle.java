@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAnglePrintValues;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
 import com.ctre.CANTalon;
@@ -23,23 +24,25 @@ public class ShooterAngle extends Subsystem {
 	public CANTalon shooterAngleX = new CANTalon(RobotMap.shooterAngleX);
 	public CANTalon shooterAngleY = new CANTalon(RobotMap.shooterAngleY);
 	
-	public DigitalInput magHallX = new DigitalInput(RobotMap.magHallX);
-	public DigitalInput magHallY = new DigitalInput(RobotMap.magHallY);
+	public DigitalInput magHallX = new DigitalInput(RobotMap.LimitX);
+	public DigitalInput magHallY = new DigitalInput(RobotMap.LimitY);
 	
 	// Initializes the motors for the shooter alignment system
 	public ShooterAngle () {
 		System.out.println("ShooterAngle Constructor");
 		
-		shooterAngleX.changeControlMode(TalonControlMode.PercentVbus);
+		setPIDAngleX();
+		shooterAngleX.changeControlMode(TalonControlMode.Position);
 		System.out.println("TalonX control mode: " + shooterAngleX.getControlMode());
-		shooterAngleX.setFeedbackDevice(FeedbackDevice.PulseWidth);
+		shooterAngleX.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooterAngleX.setEncPosition(0);
 		//shooterAngleX.setF(RobotMap.shooterAngleXF);
 		//setPIDAngleX();
 		
-		shooterAngleY.changeControlMode(TalonControlMode.PercentVbus);
+		setPIDAngleY();
+		shooterAngleY.changeControlMode(TalonControlMode.Position);
 		System.out.println("TalonY control mode: " + shooterAngleY.getControlMode());
-		shooterAngleY.setFeedbackDevice(FeedbackDevice.PulseWidth);
+		shooterAngleY.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooterAngleY.setEncPosition(0);
 		//shooterAngleY.setF(RobotMap.shooterAngleXF);
 		//setPIDAngleY();
@@ -110,10 +113,16 @@ public class ShooterAngle extends Subsystem {
 		return instance;
 	}
 	
+	public void printValues() {
+    	SmartDashboard.putNumber("Angle X Position", getPositionX());
+    	SmartDashboard.putNumber("Angle Y Position", getPositionY());
+	}
+	
 	// Sets the default running command for this subsystem
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new ShooterCalibrate());
+    	setDefaultCommand(new ShooterAnglePrintValues());
     }
 }
 

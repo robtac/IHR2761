@@ -28,7 +28,7 @@ public class Shooter extends Subsystem {
 		System.out.println("Shooter const");
 		
 		shooterMotor.changeControlMode(TalonControlMode.Speed);
-		shooterMotor.setFeedbackDevice(FeedbackDevice.PulseWidth);
+		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterMotor.setEncPosition(0);
     	shooterMotor.setF(RobotMap.shooterF);
 		setPIDShoot();
@@ -38,7 +38,7 @@ public class Shooter extends Subsystem {
 	public void printSpeed() {
 		double motorVelocity = (int) (shooterMotor.getPulseWidthVelocity() * ENCODERVELOCITY);
     	System.out.println("Is executing at: " + motorVelocity + " rpm");
-    	motorVelocity = shooterMotor.getSpeed();
+    	motorVelocity = shooterMotor.getSpeed() * ENCODERVELOCITY;
     	SmartDashboard.putNumber("Actual Shooter Speed", motorVelocity);
     	SmartDashboard.putNumber("Actual Shooter Speed Number", motorVelocity);
 	}

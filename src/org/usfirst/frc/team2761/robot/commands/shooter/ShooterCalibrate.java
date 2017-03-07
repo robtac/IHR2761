@@ -33,6 +33,7 @@ public class ShooterCalibrate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	shooterAngle.printValues();
     	if (shooterAngle.getMagHallX() && !isFinishedX) {
     		shooterAngle.setPositionX(3);
     	} else {
