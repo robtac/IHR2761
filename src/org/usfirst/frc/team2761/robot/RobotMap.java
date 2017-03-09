@@ -35,7 +35,7 @@ public class RobotMap {
 	public static double shooterP = 0.020;
     public static double shooterI = 0.000;
     public static double shooterD = 0.000;
-    public static double shooterSpeed = 500;
+    public static double shooterSpeed = -4500;
     
     // Default PID values for the shooter angle talons
     public static double shooterAngleXF = 0.025;

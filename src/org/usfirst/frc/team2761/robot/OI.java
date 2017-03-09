@@ -44,17 +44,18 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
-		OI.leftTrigger.whileHeld(new Gears());
-		OI.rightTrigger.whileHeld(new Shoot());
+//		OI.leftTrigger.whileHeld(new Gears());
+//		OI.rightTrigger.whileHeld(new Shoot());
+		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
+		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
 		
-
 		OI.xbox.a.whileHeld(new RunClimberBackwards());
 		OI.xbox.b.whileHeld(new RunClimberFullSpeed());
 		OI.xbox.y.whileHeld(new RunClimber());
 		OI.xbox.start.whileHeld(new Shoot());
-		OI.xbox.back.whileHeld(new RunPaddle());
-		OI.xbox.lb.whileHeld(new ShooterAngleSet(1));
-		OI.xbox.rb.whileHeld(new ShooterAngleSet(5));
+		//OI.xbox.back.whileHeld(new RunPaddle());
+		OI.xbox.rt.whileHeld(new RunPaddle(true));
+		OI.xbox.lt.whileHeld(new RunPaddle(false));
 		OI.xbox.dPad.down.whileHeld(new ShooterAngleSet(1));
 		OI.xbox.dPad.downRight.whileHeld(new ShooterAngleSet(2));
 		OI.xbox.dPad.right.whileHeld(new ShooterAngleSet(3));

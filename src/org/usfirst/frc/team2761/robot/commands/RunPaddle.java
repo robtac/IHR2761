@@ -10,14 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RunPaddle extends Command {
 	
 	Paddle paddle;
+	Boolean direction;
 	
 	// Constructor for the command
-    public RunPaddle() {
+    public RunPaddle(Boolean bool) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
     	paddle = Paddle.getInstance();
     	requires(paddle);
+    	direction = bool;
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +28,11 @@ public class RunPaddle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	paddle.setSpeed(0.25);
+    	if (direction) {
+    		paddle.setSpeed(0.25);
+    	} else {
+    		paddle.setSpeed(-0.25);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

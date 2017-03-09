@@ -9,6 +9,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -32,7 +33,8 @@ public class DriveTrain extends Subsystem {
 //		frontRightDrive.configMaxOutputVoltage(10);
 //		backLeftDrive.configMaxOutputVoltage(10);
 //		backRightDrive.configMaxOutputVoltage(10);
-
+		setInput(true);
+		
 		driveTrain.setSafetyEnabled(false);
 		
 	}
@@ -46,7 +48,22 @@ public class DriveTrain extends Subsystem {
 	// Drives the robot based on joystick input
 	public void tankDrive() 
 	{
-		driveTrain.tankDrive(OI.leftJoystick.getY() * -1, OI.rightJoystick.getY() * -1);
+		Boolean driverInput = getInput();
+		if (driverInput) {
+			// Gear system forwards
+			driveTrain.tankDrive(OI.rightJoystick.getY() * 1, OI.leftJoystick.getY() * 1);
+		} else {
+			// Intake forwards
+			driveTrain.tankDrive(OI.leftJoystick.getY() * -1, OI.rightJoystick.getY() * -1);
+		}
+	}
+	
+	public void setInput (Boolean input) {
+		SmartDashboard.putBoolean("DriverInput", input);
+	}
+	
+	public Boolean getInput () {
+		return SmartDashboard.getBoolean("DriverInput", true);
 	}
 	
 	// Drives the robot based on input speed
