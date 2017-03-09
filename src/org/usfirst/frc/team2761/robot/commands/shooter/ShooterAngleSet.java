@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
+import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.Shooter;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
@@ -12,8 +13,6 @@ public class ShooterAngleSet extends Command {
 
 	ShooterAngle shooterAngle;
 	int location;
-	double XMOVEMENT = 0.25;
-	double YMOVEMENT = 0.35;
 	boolean isFinished = false;
 	
 	// Constructor for the command
@@ -31,8 +30,6 @@ public class ShooterAngleSet extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("X Limit: " + shooterAngle.getMagHallX());
-    	System.out.println("Y Limit: " + shooterAngle.getMagHallY());
     	shooterAngle.printValues();
     	setPosition();
     }
@@ -40,25 +37,25 @@ public class ShooterAngleSet extends Command {
     // Starts the movement of the shooter angle motors
     private void setPosition() {
     	switch (location) {
-        case 1: shooterAngle.setPositionY(YMOVEMENT);
+        case 1: shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
-        case 2: shooterAngle.setPositionX(XMOVEMENT);
-        		shooterAngle.setPositionY(YMOVEMENT);
+        case 2: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+        		shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
-        case 3: shooterAngle.setPositionX(XMOVEMENT);
+        case 3: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
                 break;
-        case 4: shooterAngle.setPositionX(XMOVEMENT);
-        		shooterAngle.setPositionY(-YMOVEMENT);
+        case 4: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+        		shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
         		break;
-        case 5: shooterAngle.setPositionY(-YMOVEMENT);
+        case 5: shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
                 break;
-        case 6: shooterAngle.setPositionX(-XMOVEMENT);
-        		shooterAngle.setPositionY(-YMOVEMENT);
+        case 6: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+        		shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
                 break;
-        case 7: shooterAngle.setPositionX(-XMOVEMENT);
+        case 7: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
                 break;
-        case 8: shooterAngle.setPositionX(-XMOVEMENT);
-        		shooterAngle.setPositionY(YMOVEMENT);
+        case 8: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+        		shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
         default: shooterAngle.setPositionX(0);
                  break;

@@ -39,14 +39,16 @@ public class RobotMap {
     
     // Default PID values for the shooter angle talons
     public static double shooterAngleXF = 0.025;
-	public static double shooterAngleXP = 0.000;
+	public static double shooterAngleXP = 1.000;
     public static double shooterAngleXI = 0.000;
     public static double shooterAngleXD = 0.000;
+    public static double shooterAngleXShift = 1024;
     
     public static double shooterAngleYF = 0.025;
-	public static double shooterAngleYP = 0.000;
+	public static double shooterAngleYP = 0.020;
     public static double shooterAngleYI = 0.000;
     public static double shooterAngleYD = 0.000;
+    public static double shooterAngleYShift = 1024;
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

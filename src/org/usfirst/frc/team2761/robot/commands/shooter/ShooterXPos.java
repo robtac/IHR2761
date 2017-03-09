@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
+import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +27,7 @@ public class ShooterXPos extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	shooterAngle.printValues();
-    	shooterAngle.setPositionX(shooterAngle.getPositionX() + 5);
+    	shooterAngle.setPositionX(shooterAngle.getPositionX() + RobotMap.shooterAngleXShift);
     }
 
     // Make this return true when this Command no longer needs to run execute()

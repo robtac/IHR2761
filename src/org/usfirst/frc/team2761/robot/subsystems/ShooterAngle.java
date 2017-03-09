@@ -31,21 +31,19 @@ public class ShooterAngle extends Subsystem {
 	public ShooterAngle () {
 		System.out.println("ShooterAngle Constructor");
 		
-		setPIDAngleX();
 		shooterAngleX.changeControlMode(TalonControlMode.Position);
-		System.out.println("TalonX control mode: " + shooterAngleX.getControlMode());
 		shooterAngleX.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		setPIDAngleX();
+		shooterAngleX.setF(RobotMap.shooterAngleXF);
 		shooterAngleX.setEncPosition(0);
-		//shooterAngleX.setF(RobotMap.shooterAngleXF);
-		//setPIDAngleX();
+		shooterAngleX.enableControl();
 		
-		setPIDAngleY();
 		shooterAngleY.changeControlMode(TalonControlMode.Position);
-		System.out.println("TalonY control mode: " + shooterAngleY.getControlMode());
 		shooterAngleY.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		setPIDAngleY();
+		shooterAngleY.setF(RobotMap.shooterAngleYF);
 		shooterAngleY.setEncPosition(0);
-		//shooterAngleY.setF(RobotMap.shooterAngleXF);
-		//setPIDAngleY();
+		shooterAngleY.enableControl();
 	}
 	
 	// Gets the value of the MagHall X sensor
@@ -59,8 +57,9 @@ public class ShooterAngle extends Subsystem {
 	}
 	
 	// Sets the x position of the shooter 
-	public void setPositionX(double pos) {
-		shooterAngleX.set(pos);
+	public void setPositionX(double posDiff) {
+		System.out.println(getPositionX());
+		shooterAngleX.set(getPositionX() + posDiff);
 	}
 	
 	// Returns the x position of the shooter
@@ -75,9 +74,15 @@ public class ShooterAngle extends Subsystem {
 		shooterAngleX.setD(RobotMap.shooterAngleXD);
 	}
 	
+	public void printPIDX () {
+		System.out.println("P: " + shooterAngleX.getP());
+		System.out.println("I: " + shooterAngleX.getI());
+		System.out.println("D: " + shooterAngleX.getD());
+	}
+	
 	// Sets the y position of the shooter
-	public void setPositionY(double pos) {
-		shooterAngleY.set(pos);
+	public void setPositionY(double posDiff) {
+		shooterAngleY.set(getPositionY() + posDiff);
 	}
 	
 	// Returns the y position of the shooter
@@ -93,9 +98,9 @@ public class ShooterAngle extends Subsystem {
 	
 	// Sets the PIDs of the angle Y talon
 	public void setPIDAngleY() {
-		shooterAngleY.setP(RobotMap.shooterAngleXP);
-		shooterAngleY.setI(RobotMap.shooterAngleXI);
-		shooterAngleY.setD(RobotMap.shooterAngleXD);
+		shooterAngleY.setP(RobotMap.shooterAngleYP);
+		shooterAngleY.setI(RobotMap.shooterAngleYI);
+		shooterAngleY.setD(RobotMap.shooterAngleYD);
 	}
 	
 	// Zeroes the encoder of the angle x talon
