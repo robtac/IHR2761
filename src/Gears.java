@@ -107,7 +107,14 @@ public class Gears {
       // Just skip and continue
       long frameTime = shooterImageSink.grabFrame(inputImage);
       if (frameTime == 0) continue;
-
+      
+      if (table.getBoolean("takeImage", false)) {
+    	  String filename = "image" + imageNumber + ".png"; imageNumber++;
+    	    System.out.println(String.format("Writing %s", filename));
+    	    Imgcodecs.imwrite(filename, inputImage);
+    	    table.putBoolean("takeImage", false);
+      }
+      
       //Imgproc.resize(inputImage, inputImage, new Size(320, 240));
       
       grip.process(inputImage);
@@ -158,13 +165,6 @@ public class Gears {
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
       shooterImageSource.putFrame(inputImage);
-      
-      if (table.getBoolean("takeImage", false)) {
-    	  String filename = "image" + imageNumber + ".png"; imageNumber++;
-    	    System.out.println(String.format("Writing %s", filename));
-    	    Imgcodecs.imwrite(filename, inputImage);
-    	    table.putBoolean("takeImage", false);
-      }
     }
   }
 
