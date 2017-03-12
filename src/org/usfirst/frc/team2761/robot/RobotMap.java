@@ -20,15 +20,17 @@ public class RobotMap {
 	
 	public static int climb = 3;
 	public static int climbRoller = 0;
-	public static int paddle= 1;
+	public static int paddle = 1;
 	
 	public static int shooterMotor = 2;
 	public static int shooterAngleX = 5;
 	public static int shooterAngleY = 4;
 	
 	// Sets the IDs of the MagHall sensors
-	public static int LimitX= 0;
-	public static int LimitY = 1;
+	public static int LimitX1 = 2;
+	public static int LimitX2 = 3;
+	public static int LimitY1 = 0;
+	public static int LimitY2 = 1;
 	
 	// Default PID values for the shooter
 	public static double shooterF = 0.025;

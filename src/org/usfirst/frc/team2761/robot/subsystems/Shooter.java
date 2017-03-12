@@ -2,13 +2,10 @@ package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
-import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

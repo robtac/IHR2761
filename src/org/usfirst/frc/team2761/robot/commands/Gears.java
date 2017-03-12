@@ -39,8 +39,9 @@ public class Gears extends Command {
 
     // Aligns the robot based on the NetworkTable values
     private void visionAlign () {
-    	centerDifference = table.getNumberArray("CenterDifference");
-    	imageSize = table.getNumberArray("Image Size");
+    	double [] blankArray = {};
+    	centerDifference = table.getNumberArray("CenterDifference", blankArray);
+    	imageSize = table.getNumberArray("Image Size", blankArray);
     	double[] imageCenter = {imageSize[0] / 2, imageSize[1] / 2};
     	double percentageX = centerDifference[0] / imageCenter[0];
     	System.out.println("Percentage X: " + percentageX);

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.subsystems.Shooter;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,17 +23,17 @@ public class ShooterAngleXSetPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.shooterAngleXP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterAngleXI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterAngleXD = SmartDashboard.getNumber("D");
+    	RobotMap.shooterAngleXP = SmartDashboard.getNumber("P", 0.020);
+    	RobotMap.shooterAngleXI = SmartDashboard.getNumber("I", 0.000);
+    	RobotMap.shooterAngleXD = SmartDashboard.getNumber("D", 0.000);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//shooter.printSpeed();
-    	RobotMap.shooterAngleXP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterAngleXI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterAngleXD = SmartDashboard.getNumber("D");
+    	RobotMap.shooterAngleXP = SmartDashboard.getNumber("P", 0.020);
+    	RobotMap.shooterAngleXI = SmartDashboard.getNumber("I", 0.000);
+    	RobotMap.shooterAngleXD = SmartDashboard.getNumber("D", 0.000);
     	
     	shooterAngle.setPIDAngleX();
 

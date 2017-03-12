@@ -13,34 +13,26 @@ public class Paddle extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	
 	public static Paddle instance = new Paddle();
+	CANTalon paddle = new CANTalon(RobotMap.paddle);
 	
-	CANTalon paddle = new CANTalon (RobotMap.paddle);
-	
-	// Initializes the paddle subsystem
 	public Paddle () {
 		
 	}
+	
+	public void setSpeed () {
+		System.out.println("Paddle setSpeed");
+		paddle.set(0.25);
+	}
+	
+	public void stop () {
+		paddle.set(0);
+	}
 
-	// Returns the instance of this subsystem
-	public static Paddle getInstance() {
+	public static Paddle getInstance () {
 		return instance;
 	}
 	
-	// Sets the speed of the motor
-	public void setSpeed (double speed) {
-		paddle.set(speed);
-	}
-	
-	// Stops the motor abruptly
-	public void stop() {
-		paddle.set(0);
-		paddle.disable();
-		paddle.enable();
-	}
-	
-	// Sets the default running command
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

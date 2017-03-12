@@ -23,17 +23,17 @@ public class ShooterAngleYSetPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.shooterAngleYP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterAngleYI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterAngleYD = SmartDashboard.getNumber("D");
+    	RobotMap.shooterAngleYP = SmartDashboard.getNumber("P", 0.020);
+    	RobotMap.shooterAngleYI = SmartDashboard.getNumber("I", 0.000);
+    	RobotMap.shooterAngleYD = SmartDashboard.getNumber("D", 0.000);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//shooter.printSpeed();
-    	RobotMap.shooterAngleYP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterAngleYI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterAngleYD = SmartDashboard.getNumber("D");
+    	RobotMap.shooterAngleYP = SmartDashboard.getNumber("P", 0.020);
+    	RobotMap.shooterAngleYI = SmartDashboard.getNumber("I", 0.000);
+    	RobotMap.shooterAngleYD = SmartDashboard.getNumber("D", 0.000);
     	
     	shooterAngle.setPIDAngleY();
 

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.subsystems.Shooter;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,6 +21,7 @@ public class ShooterAngleSet extends Command {
     	shooterAngle = ShooterAngle.getInstance();
     	requires(shooterAngle);
     	location = l;
+    	System.out.println("D-Pad input: " + l);
     }
 
     // Called just before this Command runs the first time
@@ -36,29 +36,32 @@ public class ShooterAngleSet extends Command {
 
     // Starts the movement of the shooter angle motors
     private void setPosition() {
+    	boolean limitX1 = shooterAngle.getMagHallX1();
+    	boolean limitX2 = shooterAngle.getMagHallX2();
+    	boolean limitY1 = shooterAngle.getMagHallY1();
+    	boolean limitY2 = shooterAngle.getMagHallY2();
     	switch (location) {
-        case 1: shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+        case 1: if (!limitY1)
+        			shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
-        case 2: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
-        		shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+        case 2: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
-        case 3: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+        case 3: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
                 break;
-        case 4: shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
-        		shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+        case 4: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
         		break;
-        case 5: shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+        case 5: if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
                 break;
-        case 6: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
-        		shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+        case 6: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
                 break;
-        case 7: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+        case 7: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
                 break;
-        case 8: shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
-        		shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+        case 8: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
                 break;
-        default: shooterAngle.setPositionX(0);
-                 break;
     	}
     }
     

@@ -2,8 +2,6 @@ package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAnglePrintValues;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
@@ -24,8 +22,10 @@ public class ShooterAngle extends Subsystem {
 	public CANTalon shooterAngleX = new CANTalon(RobotMap.shooterAngleX);
 	public CANTalon shooterAngleY = new CANTalon(RobotMap.shooterAngleY);
 	
-	public DigitalInput magHallX = new DigitalInput(RobotMap.LimitX);
-	public DigitalInput magHallY = new DigitalInput(RobotMap.LimitY);
+	public DigitalInput magHallX1 = new DigitalInput(RobotMap.LimitX1);
+	public DigitalInput magHallX2 = new DigitalInput(RobotMap.LimitX2);
+	public DigitalInput magHallY1 = new DigitalInput(RobotMap.LimitY1);
+	public DigitalInput magHallY2 = new DigitalInput(RobotMap.LimitY2);
 	
 	// Initializes the motors for the shooter alignment system
 	public ShooterAngle () {
@@ -47,13 +47,21 @@ public class ShooterAngle extends Subsystem {
 	}
 	
 	// Gets the value of the MagHall X sensor
-	public boolean getMagHallX() {
-		return magHallX.get();
+	public boolean getMagHallX1() {
+		return magHallX1.get();
+	}
+	
+	public boolean getMagHallX2 () {
+		return magHallX2.get();
 	}
 	
 	// Gets the value of the MagHall Y sensor
-	public boolean getMagHallY() {
-		return magHallY.get();
+	public boolean getMagHallY1() {
+		return magHallY1.get();
+	}
+	
+	public boolean getMagHallY2 () {
+		return magHallY2.get();
 	}
 	
 	// Sets the x position of the shooter 

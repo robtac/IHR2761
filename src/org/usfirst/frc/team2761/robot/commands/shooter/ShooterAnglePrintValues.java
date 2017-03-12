@@ -3,7 +3,6 @@ package org.usfirst.frc.team2761.robot.commands.shooter;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *

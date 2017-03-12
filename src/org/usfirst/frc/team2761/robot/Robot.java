@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team2761.robot.commands.AutoDriveForward;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
-import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
 /**
@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 
 	ShooterCalibrate shooterCalibrate;
 	Command autonomousCommand;
+	AutoDriveForward mainAuto;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -43,9 +44,11 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		chooser.addDefault("Default Auto", new TankDrive());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		//chooser.addObject("My Auto", new AutoDriveForward());
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
+		mainAuto = new AutoDriveForward();
+
 	}
 
 	/**
@@ -76,8 +79,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		shooterCalibrate.start();
-		
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -86,10 +87,11 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-
 		// schedule the autonomous command (example)
+		//shooterCalibrate.start();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		mainAuto.start();
 	}
 
 	/**

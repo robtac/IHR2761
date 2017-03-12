@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
-import org.usfirst.frc.team2761.robot.subsystems.Shooter;
 import org.usfirst.frc.team2761.robot.subsystems.ShooterAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -34,7 +33,7 @@ public class ShooterCalibrate extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	shooterAngle.printValues();
-    	if (shooterAngle.getMagHallX() && !isFinishedX) {
+    	if (shooterAngle.getMagHallX1() && !isFinishedX) {
     		shooterAngle.setPositionX(3);
     	} else {
     		shooterAngle.setPositionX(0);
@@ -42,7 +41,7 @@ public class ShooterCalibrate extends Command {
     		isFinishedX = true;
     		System.out.println("Angle X Calibrated");
     	}
-    	if (shooterAngle.getMagHallY() && !isFinishedY) {
+    	if (shooterAngle.getMagHallY1() && !isFinishedY) {
     		shooterAngle.setPositionY(3);
     	} else {
     		shooterAngle.setPositionY(0);

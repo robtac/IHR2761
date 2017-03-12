@@ -23,19 +23,19 @@ public class ShooterSet extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.shooterP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterD = SmartDashboard.getNumber("D");
-    	RobotMap.shooterSpeed = SmartDashboard.getNumber("ShooterSpeed");
+    	RobotMap.shooterP = SmartDashboard.getNumber("P", RobotMap.shooterP);
+    	RobotMap.shooterI = SmartDashboard.getNumber("I", RobotMap.shooterI);
+    	RobotMap.shooterD = SmartDashboard.getNumber("D", RobotMap.shooterD);
+    	RobotMap.shooterSpeed = SmartDashboard.getNumber("ShooterSpeed", RobotMap.shooterD);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//shooter.printSpeed();
-    	RobotMap.shooterP = SmartDashboard.getNumber("P");
-    	RobotMap.shooterI = SmartDashboard.getNumber("I");
-    	RobotMap.shooterD = SmartDashboard.getNumber("D");
-    	RobotMap.shooterSpeed = SmartDashboard.getNumber("ShooterSpeed");
+    	RobotMap.shooterP = SmartDashboard.getNumber("P", 0.020);
+    	RobotMap.shooterI = SmartDashboard.getNumber("I", 0.000);
+    	RobotMap.shooterD = SmartDashboard.getNumber("D", 0.000);
+    	RobotMap.shooterSpeed = SmartDashboard.getNumber("ShooterSpeed", -4500);
     	
     	shooter.setPIDShoot();
 //    	System.out.println("P" + RobotMap.shooterP);

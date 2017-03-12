@@ -1,22 +1,14 @@
 package org.usfirst.frc.team2761.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterXNeg;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterXPos;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterYNeg;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterYPos;
-import org.usfirst.frc.team2761.robot.subsystems.Paddle;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleXSetPID;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleYSetPID;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -49,13 +41,16 @@ public class OI {
 		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
 		
-		OI.xbox.a.whileHeld(new RunClimberBackwards());
-		OI.xbox.b.whileHeld(new RunClimberFullSpeed());
+//		OI.xbox.a.whileHeld(new RunClimberBack());
+		OI.xbox.b.whileHeld(new RunClimberFull());
+		OI.xbox.x.whileHeld(new RunClimberVariable());
 		OI.xbox.y.whileHeld(new RunClimber());
 		OI.xbox.start.whileHeld(new Shoot());
-		//OI.xbox.back.whileHeld(new RunPaddle());
-		OI.xbox.rt.whileHeld(new RunPaddle(true));
-		OI.xbox.lt.whileHeld(new RunPaddle(false));
+		OI.xbox.back.whileHeld(new Shoot());
+		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
+		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
+//		OI.xbox.rb.whileHeld(new runPaddle());
+		OI.xbox.rt.whileHeld(new runPaddle());
 		OI.xbox.dPad.down.whileHeld(new ShooterAngleSet(1));
 		OI.xbox.dPad.downRight.whileHeld(new ShooterAngleSet(2));
 		OI.xbox.dPad.right.whileHeld(new ShooterAngleSet(3));
