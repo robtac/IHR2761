@@ -86,6 +86,13 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(1);
 	}
 	
+	public void stop () {
+		frontLeftDrive.set(0);
+		backLeftDrive.set(0);
+		frontRightDrive.set(0);
+		backRightDrive.set(0);
+	}
+	
 	// Sets the default running command
     public void initDefaultCommand(){
         // Set the default command for a subsystem here.

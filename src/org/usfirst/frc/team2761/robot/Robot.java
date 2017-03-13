@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2761.robot.commands.AutoDriveForward;
+import org.usfirst.frc.team2761.robot.commands.AutoDriveRightSide;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	ShooterCalibrate shooterCalibrate;
 	Command autonomousCommand;
 	AutoDriveForward mainAuto;
+	AutoDriveRightSide rightAuto;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -48,7 +50,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
 		mainAuto = new AutoDriveForward();
-
+		rightAuto = new AutoDriveRightSide();
+		
+		chooser.addObject("Center", mainAuto);
+		chooser.addObject("Right Side", rightAuto);
 	}
 
 	/**
@@ -91,7 +96,7 @@ public class Robot extends IterativeRobot {
 		//shooterCalibrate.start();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
-		mainAuto.start();
+		//mainAuto.start();
 	}
 
 	/**

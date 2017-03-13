@@ -29,7 +29,7 @@ public class AutoDriveForward extends Command {
     	System.out.println("Running auto");
     	initTime = Timer.getFPGATimestamp();
     	lastTime = Timer.getFPGATimestamp();
-    	setTimeout(3.1);
+    	setTimeout(4);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +39,9 @@ public class AutoDriveForward extends Command {
     		lastTime = currentTime;
     		SmartDashboard.putBoolean("takePicture", true);
     	}
+    	
+    	// First val is right side of robot
+//    	tankDrive.drive(-0.25, 0.265);
     	tankDrive.drive(-0.25, 0.25);
     	climber.setSpeed(-0.1);
     }
