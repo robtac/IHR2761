@@ -34,10 +34,10 @@ public class AutoDriveRightSide extends Command {
     	double currentTime = Timer.getFPGATimestamp() - timer;
     	System.out.println("Timer " + currentTime);
     	if (currentTime < 3.65) {
-    		tank.drive(-0.25, 0.265);
+    		tank.drive(-0.25, 0.25);
     		climber.setSpeed(-0.1);
-    	} else if (currentTime < 4.5) {
-    		tank.drive(0.25, 0.265);
+    	} else if (currentTime < 4.3) {
+    		tank.drive(-0.25, -0.25);
     		climber.stop();
     	} else if (currentTime < 7) {
     		tank.stop();

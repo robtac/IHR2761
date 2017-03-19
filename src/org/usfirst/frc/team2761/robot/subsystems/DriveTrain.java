@@ -66,6 +66,10 @@ public class DriveTrain extends Subsystem {
 		return SmartDashboard.getBoolean("DriverInput", true);
 	}
 	
+	public void moveForward (double feet) {
+		
+	}
+	
 	// Drives the robot based on input speed
 	public void drive(double leftSpeed, double rightSpeed)
 	{
