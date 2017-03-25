@@ -65,10 +65,10 @@ public class Gears {
     // Set the resolution for our camera, since this is over USB
     //camera.setExposureAuto();
     shooterCamera.setExposureManual(35);
-    shooterCamera.setResolution(320,240);
+    shooterCamera.setResolution(256,192);
     
     gearsCamera.setExposureManual(35);
-    gearsCamera.setResolution(320, 240);
+    gearsCamera.setResolution(256, 192);
     
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
