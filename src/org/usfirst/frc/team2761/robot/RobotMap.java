@@ -18,13 +18,15 @@ public class RobotMap {
 	public static int frontRightDrive = 14;
 	public static int backRightDrive = 15;
 	
-	public static int climb = 3;
-	public static int climbRoller = 0;
-	public static int paddle = 1;
+	public static int climb1 = 0;
+	public static int shooterMotor1 = 1;
+	public static int shooterMotor2 = 2;
+	public static int climb2 = 3;
+	public static int intakeBelt = 4;
+	public static int ballAgitator = 5;
 	
-	public static int shooterMotor = 2;
-	public static int shooterAngleX = 5;
-	public static int shooterAngleY = 4;
+	public static int shooterAngleX = 30; // Deprecated
+	public static int shooterAngleY = 31; // Deprecated
 	
 	// Sets the IDs of the MagHall sensors
 	public static int LimitX1 = 2;
@@ -37,7 +39,7 @@ public class RobotMap {
 	public static double shooterP = 0.020;
     public static double shooterI = 0.000;
     public static double shooterD = 0.000;
-    public static double shooterSpeed = -4500;
+    public static double shooterSpeed = 4000;
     
     // Default PID values for the shooter angle talons
     public static double shooterAngleXF = 0.025;

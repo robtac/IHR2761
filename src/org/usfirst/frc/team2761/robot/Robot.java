@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2761.robot.commands.AutoDriveForward;
-import org.usfirst.frc.team2761.robot.commands.AutoDriveRightSide;
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
+import org.usfirst.frc.team2761.robot.commands.auto.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterCalibrate;
 
 /**
@@ -30,8 +29,14 @@ public class Robot extends IterativeRobot {
 
 	ShooterCalibrate shooterCalibrate;
 	Command autonomousCommand;
-	AutoDriveForward mainAuto;
-	AutoDriveRightSide rightAuto;
+	
+	AutoCenterGears gearsCenter;
+	AutoBaseline baseline;
+	AutoBlueLeft blueLeft;
+	AutoBlueRight blueRight;
+	AutoRedLeft redLeft;
+	AutoRedRight redRight;
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -49,11 +54,20 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("My Auto", new AutoDriveForward());
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
-		mainAuto = new AutoDriveForward();
-		rightAuto = new AutoDriveRightSide();
 		
-		chooser.addObject("Center", mainAuto);
-		chooser.addObject("Right Side", rightAuto);
+		gearsCenter = new AutoCenterGears();
+		baseline = new AutoBaseline();
+		blueLeft = new AutoBlueLeft();
+		blueRight = new AutoBlueRight();
+		redLeft = new AutoRedLeft();
+		redRight = new AutoRedRight();
+		
+		chooser.addObject("Center Gears", gearsCenter);
+		chooser.addObject("Pass Baseline", baseline);
+		chooser.addObject("Blue Left", blueLeft);
+		chooser.addObject("Blue Right", blueRight);
+		chooser.addObject("Red Left", redLeft);
+		chooser.addObject("Red Right", redRight);
 	}
 
 	/**

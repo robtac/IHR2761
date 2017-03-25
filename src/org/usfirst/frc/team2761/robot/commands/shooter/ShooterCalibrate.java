@@ -32,23 +32,23 @@ public class ShooterCalibrate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterAngle.printValues();
-    	if (shooterAngle.getMagHallX1() && !isFinishedX) {
-    		shooterAngle.setPositionX(3);
-    	} else {
-    		shooterAngle.setPositionX(0);
-    		shooterAngle.zeroX();
-    		isFinishedX = true;
-    		System.out.println("Angle X Calibrated");
-    	}
-    	if (shooterAngle.getMagHallY1() && !isFinishedY) {
-    		shooterAngle.setPositionY(3);
-    	} else {
-    		shooterAngle.setPositionY(0);
-    		shooterAngle.zeroY();
-    		isFinishedY = true;
-    		System.out.println("Angle Y Calibrated");
-    	}
+//    	shooterAngle.printValues();
+//    	if (shooterAngle.getMagHallX1() && !isFinishedX) {
+//    		shooterAngle.setPositionX(3);
+//    	} else {
+//    		shooterAngle.setPositionX(0);
+//    		shooterAngle.zeroX();
+//    		isFinishedX = true;
+//    		System.out.println("Angle X Calibrated");
+//    	}
+//    	if (shooterAngle.getMagHallY1() && !isFinishedY) {
+//    		shooterAngle.setPositionY(3);
+//    	} else {
+//    		shooterAngle.setPositionY(0);
+//    		shooterAngle.zeroY();
+//    		isFinishedY = true;
+//    		System.out.println("Angle Y Calibrated");
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

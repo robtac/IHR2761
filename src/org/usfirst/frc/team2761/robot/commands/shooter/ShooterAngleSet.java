@@ -31,39 +31,39 @@ public class ShooterAngleSet extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	shooterAngle.printValues();
-    	setPosition();
+//    	setPosition();
     }
 
     // Starts the movement of the shooter angle motors
-    private void setPosition() {
-    	boolean limitX1 = shooterAngle.getMagHallX1();
-    	boolean limitX2 = shooterAngle.getMagHallX2();
-    	boolean limitY1 = shooterAngle.getMagHallY1();
-    	boolean limitY2 = shooterAngle.getMagHallY2();
-    	switch (location) {
-        case 1: if (!limitY1)
-        			shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
-                break;
-        case 2: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
-        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
-                break;
-        case 3: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
-                break;
-        case 4: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
-        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
-        		break;
-        case 5: if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
-                break;
-        case 6: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
-        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
-                break;
-        case 7: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
-                break;
-        case 8: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
-        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
-                break;
-    	}
-    }
+//    private void setPosition() {
+//    	boolean limitX1 = shooterAngle.getMagHallX1();
+//    	boolean limitX2 = shooterAngle.getMagHallX2();
+//    	boolean limitY1 = shooterAngle.getMagHallY1();
+//    	boolean limitY2 = shooterAngle.getMagHallY2();
+//    	switch (location) {
+//        case 1: if (!limitY1)
+//        			shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+//                break;
+//        case 2: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+//        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+//                break;
+//        case 3: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+//                break;
+//        case 4: if (!limitX2) shooterAngle.setPositionX(RobotMap.shooterAngleXShift);
+//        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+//        		break;
+//        case 5: if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+//                break;
+//        case 6: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+//        		if (!limitY1) shooterAngle.setPositionY(-RobotMap.shooterAngleYShift);
+//                break;
+//        case 7: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+//                break;
+//        case 8: if (!limitX1) shooterAngle.setPositionX(-RobotMap.shooterAngleXShift);
+//        		if (!limitY2) shooterAngle.setPositionY(RobotMap.shooterAngleYShift);
+//                break;
+//    	}
+//    }
     
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

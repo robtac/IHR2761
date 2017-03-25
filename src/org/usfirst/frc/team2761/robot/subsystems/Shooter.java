@@ -18,45 +18,51 @@ public class Shooter extends Subsystem {
 	
 	private static Shooter instance = new Shooter();
 	
-	public CANTalon shooterMotor = new CANTalon(RobotMap.shooterMotor, 1);
+	public CANTalon shooterMotor1 = new CANTalon(RobotMap.shooterMotor2, 1);
+	public CANTalon shooterMotor2 = new CANTalon(RobotMap.shooterMotor1, 1);
 	
 	// Initializes the main shooter motor and talon
 	public Shooter() {
 		System.out.println("Shooter const");
 		
-		shooterMotor.changeControlMode(TalonControlMode.Speed);
-		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	shooterMotor.setEncPosition(0);
-    	shooterMotor.setF(RobotMap.shooterF);
+		shooterMotor1.changeControlMode(TalonControlMode.Speed);
+//		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
+		shooterMotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	shooterMotor1.setEncPosition(0);
+    	shooterMotor1.setF(RobotMap.shooterF);
 		setPIDShoot();
+		
+		shooterMotor2.changeControlMode(TalonControlMode.Follower);
+		shooterMotor2.set(shooterMotor1.getDeviceID());
 	}
 	
 	// Prints out the motor speed to the console
 	public void printSpeed() {
-		double motorVelocity = (int) (shooterMotor.getPulseWidthVelocity() * ENCODERVELOCITY);
+		double motorVelocity = (int) (shooterMotor1.getPulseWidthVelocity() * ENCODERVELOCITY);
     	System.out.println("Is executing at: " + motorVelocity + " rpm");
-    	motorVelocity = shooterMotor.getSpeed() * ENCODERVELOCITY;
+    	motorVelocity = shooterMotor1.getSpeed() * ENCODERVELOCITY;
     	SmartDashboard.putNumber("Actual Shooter Speed", motorVelocity);
     	SmartDashboard.putNumber("Actual Shooter Speed Number", motorVelocity);
 	}
 	
 	// Sets the motor to the desired speed
 	public void setSpeed(double speed) {
-		shooterMotor.set(speed);
+		shooterMotor1.set(speed);
+//		shooterMotor1.set(0.91);
 	}
 
 	// Stops the motor abruptly
 	public void stop() {
-		shooterMotor.set(0);
-		shooterMotor.disable();
-		shooterMotor.enable();
+		shooterMotor1.set(0);
+		shooterMotor1.disable();
+		shooterMotor1.enable();
 	}
 	
 	// Sets the PIDs for the main shooter motor
 	public void setPIDShoot() {
-		shooterMotor.setP(RobotMap.shooterP);
-		shooterMotor.setI(RobotMap.shooterI);
-		shooterMotor.setD(RobotMap.shooterD);
+		shooterMotor1.setP(RobotMap.shooterP);
+		shooterMotor1.setI(RobotMap.shooterI);
+		shooterMotor1.setD(RobotMap.shooterD);
 	}
 	
 	// Returns the instance of the main subsystem

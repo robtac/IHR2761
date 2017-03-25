@@ -3,6 +3,7 @@ package org.usfirst.frc.team2761.robot.subsystems;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,13 +17,16 @@ public class Climber extends Subsystem {
     // here. Call these from Commands.
 	private static Climber instance = new Climber();
 	
-	CANTalon climber1 = new CANTalon (RobotMap.climb);
-	CANTalon climber2 = new CANTalon (RobotMap.climbRoller);
+	CANTalon climber1 = new CANTalon (RobotMap.climb1);
+	CANTalon climber2 = new CANTalon (RobotMap.climb2);
 
 	public Climber () {
 		SmartDashboard.putNumber("ClimberSpeed", -0.25);
 		climber1.enableBrakeMode(true);
 		climber2.enableBrakeMode(true);
+		climber1.changeControlMode(TalonControlMode.PercentVbus);
+		climber2.changeControlMode(TalonControlMode.Follower);
+		climber2.set(RobotMap.climb1);
 	}
 	
 	public void setSpeed (double speed) {

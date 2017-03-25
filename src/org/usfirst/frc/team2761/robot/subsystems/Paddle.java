@@ -14,7 +14,7 @@ public class Paddle extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public static Paddle instance = new Paddle();
-	CANTalon paddle = new CANTalon(RobotMap.paddle);
+	CANTalon paddle = new CANTalon(RobotMap.ballAgitator);
 	
 	public Paddle () {
 		
@@ -22,7 +22,7 @@ public class Paddle extends Subsystem {
 	
 	public void setSpeed () {
 		System.out.println("Paddle setSpeed");
-		paddle.set(0.25);
+		paddle.set(0.6);
 	}
 	
 	public void stop () {
