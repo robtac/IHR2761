@@ -36,6 +36,9 @@ public class Robot extends IterativeRobot {
 	AutoBlueRight blueRight;
 	AutoRedLeft redLeft;
 	AutoRedRight redRight;
+	DumbBaseline dumbBaseline;
+	DumbCenterGears dumbCenterGears;
+	DriveForward test;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -61,6 +64,9 @@ public class Robot extends IterativeRobot {
 		blueRight = new AutoBlueRight();
 		redLeft = new AutoRedLeft();
 		redRight = new AutoRedRight();
+		dumbBaseline = new DumbBaseline();
+		dumbCenterGears = new DumbCenterGears();
+		test = new DriveForward(100);
 		
 		chooser.addObject("Center Gears", gearsCenter);
 		chooser.addObject("Pass Baseline", baseline);
@@ -68,6 +74,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Blue Right", blueRight);
 		chooser.addObject("Red Left", redLeft);
 		chooser.addObject("Red Right", redRight);
+		chooser.addObject("Dumb Baseline", dumbBaseline);
+		chooser.addObject("Dumb Center Gears", dumbCenterGears);
+		chooser.addObject("Test", test);
 	}
 
 	/**

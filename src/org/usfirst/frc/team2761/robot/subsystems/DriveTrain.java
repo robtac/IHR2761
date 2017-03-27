@@ -42,6 +42,11 @@ public class DriveTrain extends Subsystem {
 		
 		encoderLeft = new Encoder(7, 6);
 		encoderRight = new Encoder(9, 8);
+		
+		frontLeftDrive.enableBrakeMode(true);
+		backLeftDrive.enableBrakeMode(true);
+		frontRightDrive.enableBrakeMode(true);
+		backRightDrive.enableBrakeMode(true);
 	}
 	
 	// Returns the instance of this subsystem

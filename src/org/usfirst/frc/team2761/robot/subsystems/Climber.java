@@ -30,8 +30,9 @@ public class Climber extends Subsystem {
 	}
 	
 	public void setSpeed (double speed) {
-		climber1.set(speed);
-		climber2.set(speed);
+		climber1.set(Math.abs(speed));
+		
+		climber2.set(Math.abs(speed));
 	}
 	
 	public void stop () {
