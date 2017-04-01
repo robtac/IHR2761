@@ -58,9 +58,9 @@ public class DriveTrain extends Subsystem {
 	// Drives the robot based on joystick input
 	public void tankDrive() 
 	{
-		System.out.println("Gyro: " + gyro.getAngle());
-		System.out.println("Left Encoder: " + encoderLeft.getDistance());
-		System.out.println("Right Encoder: " + encoderRight.getDistance());
+//		System.out.println("Gyro: " + gyro.getAngle());
+//		System.out.println("Left Encoder: " + encoderLeft.getDistance());
+//		System.out.println("Right Encoder: " + encoderRight.getDistance());
 		Boolean driverInput = getInput();
 		if (driverInput) {
 			// Gear system forwards

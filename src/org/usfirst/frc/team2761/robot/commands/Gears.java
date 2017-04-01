@@ -33,7 +33,7 @@ public class Gears extends Command {
     	if (isValid) {
     		visionAlign();
     	} else {
-    		tank.drive(0, 0);
+    		tank.stop();
     	}
     }
 

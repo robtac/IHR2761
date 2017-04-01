@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
+import org.usfirst.frc.team2761.robot.commands.ClimberJoystick;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -47,6 +48,7 @@ public class Climber extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new ClimberJoystick());
     }
 }
 
