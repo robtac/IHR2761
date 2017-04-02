@@ -36,10 +36,10 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
-//		OI.leftTrigger.whileHeld(new Gears());
+		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());
-		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
-		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
+//		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
+//		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
 		
 //		OI.xbox.a.whileHeld(new RunIntake());
 		OI.xbox.a.whileHeld(new RunGearIntake());
