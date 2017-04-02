@@ -25,6 +25,9 @@ public class RobotMap {
 	public static int intakeBelt = 4;
 	public static int ballAgitator = 5;
 	
+	public static int gearPivot = 7;
+	public static int gearRoller = 6;
+	
 	public static int shooterAngleX = 30; // Deprecated
 	public static int shooterAngleY = 31; // Deprecated
 	

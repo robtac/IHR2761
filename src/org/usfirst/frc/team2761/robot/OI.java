@@ -41,7 +41,8 @@ public class OI {
 		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
 		
-		OI.xbox.a.whileHeld(new RunIntake());
+//		OI.xbox.a.whileHeld(new RunIntake());
+		OI.xbox.a.whileHeld(new RunGearIntake());
 		OI.xbox.b.whileHeld(new RunClimberFull());
 		OI.xbox.x.whileHeld(new RunClimberVariable());
 		OI.xbox.y.whileHeld(new RunClimber());
