@@ -27,7 +27,7 @@ public class Gears {
     // This stores our reference to our mjpeg server for streaming the input image
     MjpegServer shooterStream = new MjpegServer("MJPEG Server", streamPort);
 
-    MjpegServer gearsStream = new MjpegServer("MJPEG Server", 1187);
+//    MjpegServer gearsStream = new MjpegServer("MJPEG Server", 1187);
     // Selecting a Camera
     // Uncomment one of the 2 following camera options
     // The top one receives a stream from another device, and performs operations based on that
@@ -61,14 +61,14 @@ public class Gears {
     // Usually this will be on device 0, but there are other overloads
     // that can be used
     UsbCamera shooterCamera = setUsbCamera(0, shooterStream);
-    UsbCamera gearsCamera = setUsbCamera(1, gearsStream);
+//    UsbCamera gearsCamera = setUsbCamera(1, gearsStream);
     // Set the resolution for our camera, since this is over USB
     //camera.setExposureAuto();
-    shooterCamera.setExposureManual(35);
-    shooterCamera.setResolution(256,192);
+    shooterCamera.setExposureManual(30);
+    shooterCamera.setResolution(320, 240);
     
-    gearsCamera.setExposureManual(35);
-    gearsCamera.setResolution(256, 192);
+//    gearsCamera.setExposureManual(30);
+//    gearsCamera.setResolution(256, 192);
     
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
@@ -76,12 +76,12 @@ public class Gears {
     CvSink shooterImageSink = new CvSink("Shooter Image Grabber");
     shooterImageSink.setSource(shooterCamera);
     
-    CvSink gearsImageSink = new CvSink("Gears Image Grabber");
-    gearsImageSink.setSource(gearsCamera);
+//    CvSink gearsImageSink = new CvSink("Gears Image Grabber");
+//    gearsImageSink.setSource(gearsCamera);
     
     // This creates a CvSource to use. This will take in a Mat image that has had OpenCV operations
     // operations 
-    CvSource shooterImageSource = new CvSource("Shooter Image Source", VideoMode.PixelFormat.kMJPEG, 320, 240, 30);
+    CvSource shooterImageSource = new CvSource("Shooter Image Source", VideoMode.PixelFormat.kMJPEG, 256, 192, 30);
     MjpegServer shooterCvStream = new MjpegServer("Shooter Image Stream", 1186);
     shooterCvStream.setSource(shooterImageSource);
     
