@@ -18,24 +18,25 @@ public class Shooter extends Subsystem {
 	
 	private static Shooter instance = new Shooter();
 	
-	public CANTalon shooterMotor1 = new CANTalon(RobotMap.shooterMotor2, 1);
-	public CANTalon shooterMotor2 = new CANTalon(RobotMap.shooterMotor1, 1);
+	public CANTalon shooterMotor1 = new CANTalon(RobotMap.shooterMotor1, 1);
+	public CANTalon shooterMotor2 = new CANTalon(RobotMap.shooterMotor2, 1);
 	
 	// Initializes the main shooter motor and talon
 	public Shooter() {
 		System.out.println("Shooter const");
 		
-//		shooterMotor1.changeControlMode(TalonControlMode.Speed);
-		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
+		shooterMotor1.changeControlMode(TalonControlMode.Speed);
+		shooterMotor1.set(0);
+//		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
 		shooterMotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterMotor1.reverseSensor(false);
+		shooterMotor1.reverseSensor(true);
     	shooterMotor1.setEncPosition(0);
     	shooterMotor1.setF(RobotMap.shooterF);
 		setPIDShoot();
 		
 //		shooterMotor2.changeControlMode(TalonControlMode.Follower);
-//		shooterMotor2.set(shooterMotor1.getDeviceID());
-		shooterMotor2.changeControlMode(TalonControlMode.PercentVbus);
+//		shooterMotor2.set(RobotMap.shooterMotor1);
+//		shooterMotor2.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	// Prints out the motor speed to the console
@@ -49,8 +50,8 @@ public class Shooter extends Subsystem {
 	
 	// Sets the motor to the desired speed
 	public void setSpeed(double speed) {
-//		shooterMotor1.set(speed);
-		shooterMotor2.set(speed);
+		shooterMotor1.set(speed);
+//		shooterMotor2.set(speed);
 //		shooterMotor1.set(0.91);
 	}
 

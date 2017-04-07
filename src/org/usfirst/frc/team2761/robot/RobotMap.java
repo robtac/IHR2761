@@ -19,14 +19,16 @@ public class RobotMap {
 	public static int backRightDrive = 15;
 	
 	public static int climb1 = 0;
-	public static int shooterMotor1 = 1;
-	public static int shooterMotor2 = 2;
+	public static int shooterMotor1 = 2;
+	public static int shooterMotor2 = 1;
 	public static int climb2 = 3;
 	public static int intakeBelt = 4;
 	public static int ballAgitator = 5;
 	
-	public static int gearPivot = 7;
-	public static int gearRoller = 6;
+	public static int gearPivot = 6;
+	public static int gearRoller = 4;
+	
+	public static int gearRelease = 7;
 	
 	public static int shooterAngleX = 30; // Deprecated
 	public static int shooterAngleY = 31; // Deprecated
@@ -38,10 +40,10 @@ public class RobotMap {
 	public static int LimitY2 = 1;
 	
 	// Default PID values for the shooter
-	public static double shooterF = 0.025;
-	public static double shooterP = 0.005;
+	public static double shooterF = 0.0346;
+	public static double shooterP = 0.08525;
     public static double shooterI = 0.000;
-    public static double shooterD = 0.020;
+    public static double shooterD = 0.000;
 //    public static double shooterSpeed = 4300;
     public static double shooterSpeed = 91;
     

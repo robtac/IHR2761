@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class GearMove extends Command {
 
 	DriveTrain tank;
-	NetworkTable table;
+	NetworkTable table, contourTable;
 	double[] centerDifference, imageSize;
 	boolean isFinished;
 	
@@ -19,6 +19,7 @@ public class GearMove extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	table = NetworkTable.getTable("Gears");
+    	contourTable = NetworkTable.getTable("Gears");
     	table.getBoolean("isValid", false);
     	tank = DriveTrain.getInstance();
         requires(tank);
@@ -33,7 +34,9 @@ public class GearMove extends Command {
     protected void execute() {
     	Boolean isValid = table.getBoolean("isValid", false);
     	if (isValid) {
+//    		System.out.println("Proportional Distance: " + getProportionalDistance());
     		tank.drive(-0.12 + moveAdditive(), 0.1);
+//    		getProportionalDistance();
     	} else {
     		isFinished = true;
     	}
@@ -49,6 +52,41 @@ public class GearMove extends Command {
     	} else {
     		return 0;
     	}
+    }
+    
+    private double getProportionalDistance () {
+    	double[] blankArray = {0.};
+    	double[] imageSize = table.getNumberArray("Image Size", blankArray);
+    	double contour1Boundary, contour2Boundary;
+    	// Contour 1
+    	System.out.println(contourTable.getSubTable("Contour  1"));
+    	double[] contour1Center = contourTable.getNumberArray("Center", blankArray);
+    	System.out.println("Contour 1 Center: " + contour1Center[1]);
+    	double[] contour1Size = contourTable.getNumberArray("Size", blankArray);
+    	// If on right side, get left boundary
+    	if (contour1Center[0] > imageSize[0] / 2.) {
+    		contour1Boundary = contour1Center[0] - (contour1Size[0] / 2);
+    	} else {
+    		contour1Boundary = contour1Center[0] + (contour1Size[0] / 2);
+    	}
+    	
+    	// Contour 2
+    	contourTable.getSubTable("Contour 2");
+    	double[] contour2Center = contourTable.getNumberArray("Center", blankArray);
+    	System.out.println("Contour 2 Center: " + contour2Center[1]);
+    	double[] contour2Size = contourTable.getNumberArray("Size", blankArray);
+    	// If on right side, get left boundary
+    	if (contour2Center[0] > imageSize[0] / 2.) {
+    		contour2Boundary = contour2Center[0] - (contour2Size[0] / 2);
+    	} else {
+    		contour2Boundary = contour2Center[0] + (contour2Size[0] / 2);
+    	}
+    	
+    	// Get proportion based off image size
+    	double contourDifference = Math.abs(contour1Boundary - contour2Boundary);
+    	double differenceProportion = imageSize[0] / contourDifference;
+    	
+    	return differenceProportion;
     }
 
     // Make this return true when this Command no longer needs to run execute()

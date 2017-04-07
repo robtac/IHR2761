@@ -13,7 +13,7 @@ public class GearIntake extends Subsystem {
 
 	private static GearIntake gearIntake = new GearIntake();
 
-	CANTalon gearPivot = new CANTalon (RobotMap.gearPivot);
+//	CANTalon gearPivot = new CANTalon (RobotMap.gearPivot);
 	CANTalon gearRoller = new CANTalon (RobotMap.gearRoller);
 	
 	public GearIntake () {

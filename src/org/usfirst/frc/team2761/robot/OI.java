@@ -41,15 +41,22 @@ public class OI {
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
 		
-//		OI.xbox.a.whileHeld(new RunIntake());
 		OI.xbox.a.whileHeld(new RunGearIntake());
+		OI.xbox.x.whileHeld(new RunGearIntakeBack());
+		
+		OI.xbox.rb.whileHeld(new RunGearPivotForward());
+		OI.xbox.lb.whileHeld(new RunGearPivotBackwards());
+		
+//		OI.xbox.x.whileHeld(new RunGearReleaseBack());
+//		OI.xbox.a.whileHeld(new RunIntake());
+//		OI.xbox.x.whileHeld(new RunGearIntake());
 		OI.xbox.b.whileHeld(new RunClimberFull());
-		OI.xbox.x.whileHeld(new RunClimberVariable());
+//		OI.xbox.x.whileHeld(new RunClimberVariable());
 		OI.xbox.y.whileHeld(new RunClimber());
 		OI.xbox.start.whileHeld(new Shoot());
 		OI.xbox.back.whileHeld(new Shoot());
-		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
-		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
+//		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
+//		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
 //		OI.xbox.rb.whileHeld(new runPaddle());
 		OI.xbox.rt.whileHeld(new runPaddle());
 		OI.xbox.dPad.down.whileHeld(new ShooterAngleSet(1));
