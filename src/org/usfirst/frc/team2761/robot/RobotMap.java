@@ -14,8 +14,8 @@ public class RobotMap {
 	
 	// Sets the IDs of the talons
 	public static int frontLeftDrive = 12;
-	public static int backLeftDrive = 13;
-	public static int frontRightDrive = 14;
+	public static int backLeftDrive = 13; // Has encoder
+	public static int frontRightDrive = 14; // Has encoder
 	public static int backRightDrive = 15;
 	
 	public static int climb1 = 0;
@@ -42,23 +42,15 @@ public class RobotMap {
 	// Default PID values for the shooter
 	public static double shooterF = 0.0346;
 	public static double shooterP = 0.08525;
-    public static double shooterI = 0.000;
-    public static double shooterD = 0.000;
-//    public static double shooterSpeed = 4300;
-    public static double shooterSpeed = 91;
+    public static double shooterI = 0.001;
+    public static double shooterD = 0.8525;
+    public static double shooterSpeed = 4300;
+//    public static double shooterSpeed = 91;
     
-    // Default PID values for the shooter angle talons
-    public static double shooterAngleXF = 0.025;
-	public static double shooterAngleXP = 1.000;
-    public static double shooterAngleXI = 0.000;
-    public static double shooterAngleXD = 0.000;
-    public static double shooterAngleXShift = 1024;
+    public static boolean hasEncoders = false;
+    public static boolean hasGyro = false;
+    public static boolean hasVision = true;
     
-    public static double shooterAngleYF = 0.025;
-	public static double shooterAngleYP = 0.020;
-    public static double shooterAngleYI = 0.000;
-    public static double shooterAngleYD = 0.000;
-    public static double shooterAngleYShift = 1024;
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

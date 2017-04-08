@@ -6,6 +6,7 @@ import org.usfirst.frc.team2761.robot.commands.TankDrive;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,7 +25,8 @@ public class DriveTrain extends Subsystem {
 	
 	private static DriveTrain instance = new DriveTrain();
 	Gyro gyro;
-	Encoder encoderLeft, encoderRight;
+	
+	public double circumference = 4 * 2 * Math.PI;
 	
 	CANTalon frontLeftDrive = new CANTalon (RobotMap.frontLeftDrive);
 	CANTalon backLeftDrive = new CANTalon(RobotMap.backLeftDrive);
@@ -38,10 +40,10 @@ public class DriveTrain extends Subsystem {
 		gyro.calibrate();
 		setInput(true);
 		
-		driveTrain.setSafetyEnabled(false);
+		backLeftDrive.configEncoderCodesPerRev(1024);;
+		frontRightDrive.configEncoderCodesPerRev(1024);
 		
-		encoderLeft = new Encoder(7, 6);
-		encoderRight = new Encoder(9, 8);
+		driveTrain.setSafetyEnabled(false);
 		
 		frontLeftDrive.enableBrakeMode(true);
 		backLeftDrive.enableBrakeMode(true);
@@ -111,7 +113,7 @@ public class DriveTrain extends Subsystem {
 	// Drives the robot based on input speed
 	public void drive(double leftSpeed, double rightSpeed)
 	{
-		//driveTrain.tankDrive(leftSpeed, rightSpeed);
+		setControlMode(TalonControlMode.PercentVbus);
 
 		frontLeftDrive.set(leftSpeed);
 		backLeftDrive.set(leftSpeed);
@@ -122,10 +124,29 @@ public class DriveTrain extends Subsystem {
 	// Drives the robot at full speed forward
 	public void drive()
 	{
+		setControlMode(TalonControlMode.PercentVbus);
+		
 		frontLeftDrive.set(1);
 		backLeftDrive.set(1);
 		frontRightDrive.set(1);
 		backRightDrive.set(1);
+	}
+	
+	public void setPosition (double distance) {
+		setControlMode(TalonControlMode.Position);
+		double rotations = distance / circumference;
+		
+		frontLeftDrive.set(rotations);
+		backLeftDrive.set(rotations);
+		frontRightDrive.set(rotations);
+		backRightDrive.set(rotations);
+	}
+	
+	public void setControlMode (TalonControlMode controlMode) {
+		frontLeftDrive.changeControlMode(controlMode);
+		backLeftDrive.changeControlMode(controlMode);
+		frontRightDrive.changeControlMode(controlMode);
+		backRightDrive.changeControlMode(controlMode);
 	}
 	
 	public void stop () {
@@ -135,17 +156,10 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(0);
 	}
 	
-	public void zeroEncoders () {
-		encoderLeft.reset();
-		encoderRight.reset();
-	}
-	
-	public double getEncoderLeft () {
-		return encoderLeft.getDistance();
-	}
-	
-	public double getEncoderRight () {
-		return encoderRight.getDistance();
+	public int getDistance () {
+		int leftDistance = backLeftDrive.getEncPosition();
+		int rightDistance = frontRightDrive.getEncPosition();
+		return (leftDistance + rightDistance) / 2;
 	}
 	
 	// Sets the default running command

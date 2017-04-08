@@ -34,7 +34,6 @@ public class AutoForward extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	driveTrain.zeroEncoders();
     	initTime = Timer.getFPGATimestamp();
 //    	setTimeout(3.5);
     	setTimeout(10);

@@ -31,6 +31,7 @@ public class Shooter extends Subsystem {
 		shooterMotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooterMotor1.reverseSensor(true);
     	shooterMotor1.setEncPosition(0);
+    	shooterMotor1.configEncoderCodesPerRev(1024);
     	shooterMotor1.setF(RobotMap.shooterF);
 		setPIDShoot();
 		
@@ -41,9 +42,10 @@ public class Shooter extends Subsystem {
 	
 	// Prints out the motor speed to the console
 	public void printSpeed() {
-		double motorVelocity = (int) (shooterMotor1.getPulseWidthVelocity() * ENCODERVELOCITY);
+		double motorVelocity = (shooterMotor1.getSpeed());
     	System.out.println("Is executing at: " + motorVelocity + " rpm");
-    	motorVelocity = shooterMotor1.getSpeed() * ENCODERVELOCITY;
+//    	motorVelocity = shooterMotor1.getSpeed() * ENCODERVELOCITY;
+    	motorVelocity = shooterMotor1.getSpeed();
     	SmartDashboard.putNumber("Actual Shooter Speed", motorVelocity);
     	SmartDashboard.putNumber("Actual Shooter Speed Number", motorVelocity);
 	}

@@ -6,9 +6,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team2761.robot.commands.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleSet;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleXSetPID;
-import org.usfirst.frc.team2761.robot.commands.shooter.ShooterAngleYSetPID;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -59,14 +56,6 @@ public class OI {
 //		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
 //		OI.xbox.rb.whileHeld(new runPaddle());
 		OI.xbox.rt.whileHeld(new runPaddle());
-		OI.xbox.dPad.down.whileHeld(new ShooterAngleSet(1));
-		OI.xbox.dPad.downRight.whileHeld(new ShooterAngleSet(2));
-		OI.xbox.dPad.right.whileHeld(new ShooterAngleSet(3));
-		OI.xbox.dPad.upRight.whileHeld(new ShooterAngleSet(4));
-		OI.xbox.dPad.up.whileHeld(new ShooterAngleSet(5));
-		OI.xbox.dPad.upLeft.whileHeld(new ShooterAngleSet(6));
-		OI.xbox.dPad.left.whileHeld(new ShooterAngleSet(7));
-		OI.xbox.dPad.downLeft.whileHeld(new ShooterAngleSet(8));
 		
 		// Publishes data to the SmartDashboard
 		SmartDashboard.putNumber("Shooter P", RobotMap.shooterP);
@@ -74,16 +63,6 @@ public class OI {
 		SmartDashboard.putNumber("Shooter D", RobotMap.shooterD);
 		SmartDashboard.putNumber("ShooterSpeed", RobotMap.shooterSpeed);
 		SmartDashboard.putData("Set Shooter PID Values", new ShooterSet());
-		
-		SmartDashboard.putNumber("Shooter Angle X P", RobotMap.shooterP);
-		SmartDashboard.putNumber("Shooter Angle X I", RobotMap.shooterI);
-		SmartDashboard.putNumber("Shooter Angle X D", RobotMap.shooterD);
-		SmartDashboard.putData("Set Shooter Angle X PID Values", new ShooterAngleXSetPID());
-		
-		SmartDashboard.putNumber("Shooter Angle Y P", RobotMap.shooterP);
-		SmartDashboard.putNumber("Shooter Angle Y I", RobotMap.shooterI);
-		SmartDashboard.putNumber("Shooter Angle Y D", RobotMap.shooterD);
-		SmartDashboard.putData("Set Shooter Y PID Values", new ShooterAngleYSetPID());
 	}
 	
 	
