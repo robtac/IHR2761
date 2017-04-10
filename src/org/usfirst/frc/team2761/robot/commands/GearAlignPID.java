@@ -65,42 +65,53 @@ public class GearAlignPID extends Command {
 				}
 	    	};
 	    	
-	    	final double kP = RobotMap.defaultVisionP;
-	    	final double kI = RobotMap.defaultVisionI;
-	    	final double kD = RobotMap.defaultVisionD;
+	    	final double kP = SmartDashboard.getNumber("Vision P", RobotMap.defaultVisionP);
+	    	final double kI = SmartDashboard.getNumber("Vision I", RobotMap.defaultVisionI);
+	    	final double kD = SmartDashboard.getNumber("Vision D", RobotMap.defaultVisionD);
 	    	
 	    	
 	    	pidController = new PIDController(kP, kI, kD, visionSource, driveOutput);
 	    	
+	    	pidController.setInputRange(-100, 100);
+	    	
 	    	pidController.setAbsoluteTolerance(10);
 			
-			final double MIN_SPEED = 0.2;
-			final double MAX_SPEED = 0.5;
+			final double MIN_SPEED = 0.1;
+			final double MAX_SPEED = 0.225;
 			
-			if (visionSource.pidGet() > 0) {
-				pidController.setOutputRange(MIN_SPEED, MAX_SPEED);
-			}
-			else {
-				pidController.setOutputRange(-MIN_SPEED, -MAX_SPEED);
-			}
+			pidController.setOutputRange(-MAX_SPEED, MAX_SPEED);
+//			if (visionSource.pidGet() > 0) {
+//				pidController.setOutputRange(-MAX_SPEED, -MIN_SPEED);
+//			}
+//			else {
+//				pidController.setOutputRange(MIN_SPEED, MAX_SPEED);
+//			}
+			
+			pidController.setToleranceBuffer(2);
 			
 			pidController.setSetpoint(0);
 			
 			pidController.enable();
+			
+			System.out.println("Vision P: " + kP);
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("PIDController get: " + pidController.get() + 
+    			" --- PIDController error: " + pidController.getError() + 
+    			" --- PIDController P: " + pidController.getP());
     	SmartDashboard.putNumber("pidController get", pidController.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (isTableValid)
-    		return pidController.onTarget();
-    	else
-    		return true;
+    	return false;
+//    	if (isTableValid)
+//    		return pidController.onTarget();
+//    	else
+//    		return true;
     }
 
     // Called once after isFinished returns true

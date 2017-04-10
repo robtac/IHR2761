@@ -36,6 +36,10 @@ public class DriveTrain extends Subsystem {
 	
 	// Initializes the drive train
 	public DriveTrain() {
+		SmartDashboard.putNumber("Vision P", RobotMap.defaultVisionP);
+		SmartDashboard.putNumber("Vision I", RobotMap.defaultVisionI);
+		SmartDashboard.putNumber("Vision D", RobotMap.defaultVisionD);
+		
 		gyro = new AnalogGyro(0);
 		gyro.calibrate();
 		setInput(true);
