@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2761.robot.commands;
 
+import org.usfirst.frc.team2761.robot.commands.auto.Drive;
+import org.usfirst.frc.team2761.robot.commands.auto.Wait;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -24,9 +27,25 @@ public class Gears extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addSequential(new ZeroEncoders());
+    	addSequential(new Wait(0.01));
     	
-    	addSequential(new GearAlign());
-    	addSequential(new GearMove());
-    	addSequential(new MoveForward());
+    	addSequential(new Drive(50));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new PivotTurn(1));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new Drive(20));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new GearMovePID());
+    	addSequential(new ZeroEncoders());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new Drive(20));
     }
 }

@@ -37,7 +37,8 @@ public class OI {
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
-		OI.leftTrigger.whenPressed(new GearAlignPID());
+		OI.leftTrigger.whileHeld(new TestCommand());
+		OI.rightTrigger.whenPressed(new Gears());
 		
 		OI.xbox.a.whileHeld(new RunGearIntake());
 		OI.xbox.x.whileHeld(new RunGearIntakeBack());

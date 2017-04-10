@@ -44,8 +44,10 @@ public class DriveTrain extends Subsystem {
 		gyro.calibrate();
 		setInput(true);
 		
-		backLeftDrive.configEncoderCodesPerRev(1024);;
-		frontRightDrive.configEncoderCodesPerRev(1024);
+		backLeftDrive.configEncoderCodesPerRev(450);
+		backLeftDrive.reverseSensor(false);
+		frontRightDrive.configEncoderCodesPerRev(450);
+		frontRightDrive.reverseSensor(true);
 		
 		driveTrain.setSafetyEnabled(false);
 		
@@ -129,6 +131,14 @@ public class DriveTrain extends Subsystem {
 		drive(speed, speed);
 	}
 	
+	public void moveTurn (double speed, double additive) {
+		if (additive > 0) {
+			drive(-speed, speed + additive);
+		} else {
+			drive(-speed + additive, speed);
+		}
+	}
+	
 	// Drives the robot at full speed forward
 	public void drive()
 	{
@@ -164,10 +174,23 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(0);
 	}
 	
-	public int getDistance () {
-		int leftDistance = backLeftDrive.getEncPosition();
-		int rightDistance = frontRightDrive.getEncPosition();
+	public double getLeftDistance () {
+		return backLeftDrive.getPosition() * 4 * Math.PI;
+	}
+	
+	public double getRightDistance () {
+		return frontRightDrive.getPosition() * 4 * Math.PI;
+	}
+	
+	public double getDistance () {
+		double leftDistance = getLeftDistance();
+		double rightDistance = getRightDistance();
 		return (leftDistance + rightDistance) / 2;
+	}
+	
+	public void zeroEncoders () {
+		backLeftDrive.setEncPosition(0);
+		frontRightDrive.setEncPosition(0);
 	}
 	
 	// Sets the default running command

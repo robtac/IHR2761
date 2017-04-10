@@ -80,12 +80,6 @@ public class GearAlignPID extends Command {
 			final double MAX_SPEED = 0.225;
 			
 			pidController.setOutputRange(-MAX_SPEED, MAX_SPEED);
-//			if (visionSource.pidGet() > 0) {
-//				pidController.setOutputRange(-MAX_SPEED, -MIN_SPEED);
-//			}
-//			else {
-//				pidController.setOutputRange(MIN_SPEED, MAX_SPEED);
-//			}
 			
 			pidController.setToleranceBuffer(2);
 			
@@ -102,7 +96,6 @@ public class GearAlignPID extends Command {
     	System.out.println("PIDController get: " + pidController.get() + 
     			" --- PIDController error: " + pidController.getError() + 
     			" --- PIDController P: " + pidController.getP());
-    	SmartDashboard.putNumber("pidController get", pidController.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
