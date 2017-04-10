@@ -71,7 +71,7 @@ public class GripPipeline {
 		double filterContoursMaxVertices = 1000000.0;
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.3;
-		double filterContoursMaxRatio = 0.55;
+		double filterContoursMaxRatio = 0.65;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 		// Step Convex_Hulls0:
