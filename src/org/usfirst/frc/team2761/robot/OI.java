@@ -33,18 +33,21 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
-		OI.leftTrigger.whenPressed(new Gears());
+//		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
+		OI.leftTrigger.whenPressed(new GearAlignPID());
 		
 		OI.xbox.a.whileHeld(new RunGearIntake());
 		OI.xbox.x.whileHeld(new RunGearIntakeBack());
 		
-		OI.xbox.rb.whileHeld(new RunGearPivotForward());
-		OI.xbox.lb.whileHeld(new RunGearPivotBackwards());
+		OI.xbox.rt.whileHeld(new RunGearPivotForward());
+		OI.xbox.lt.whileHeld(new RunGearPivotBackwards());
 		
-//		OI.xbox.x.whileHeld(new RunGearReleaseBack());
+		OI.xbox.lb.whileHeld(new RunGearReleaseBack());
+		OI.xbox.rb.whileHeld(new RunGearRelease());
+		
 //		OI.xbox.a.whileHeld(new RunIntake());
 //		OI.xbox.x.whileHeld(new RunGearIntake());
 		OI.xbox.b.whileHeld(new RunClimberFull());
@@ -55,7 +58,7 @@ public class OI {
 //		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
 //		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
 //		OI.xbox.rb.whileHeld(new runPaddle());
-		OI.xbox.rt.whileHeld(new runPaddle());
+//		OI.xbox.rb.whileHeld(new runPaddle());
 		
 		// Publishes data to the SmartDashboard
 		SmartDashboard.putNumber("Shooter P", RobotMap.shooterP);

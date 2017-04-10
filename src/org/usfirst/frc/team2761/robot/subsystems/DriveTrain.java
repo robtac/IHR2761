@@ -121,6 +121,10 @@ public class DriveTrain extends Subsystem {
 		backRightDrive.set(rightSpeed);
 	}
 	
+	public void pivot (double speed) {
+		drive(speed, speed);
+	}
+	
 	// Drives the robot at full speed forward
 	public void drive()
 	{

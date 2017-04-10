@@ -47,6 +47,10 @@ public class RobotMap {
     public static double shooterSpeed = 4300;
 //    public static double shooterSpeed = 91;
     
+    public static double defaultVisionP = 0.01;
+    public static double defaultVisionI = 0.0;
+    public static double defaultVisionD = 0.00;
+    
     public static boolean hasEncoders = false;
     public static boolean hasGyro = false;
     public static boolean hasVision = true;
