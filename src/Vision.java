@@ -132,7 +132,7 @@ public class Vision {
     	  table.putBoolean("isValid", false);
       }
       for (int i = 0; i < pointList.size(); i++) {
-    	  contourTable = (NetworkTable) table.getSubTable("Contour " + (i + 1));
+    	  contourTable = (NetworkTable) table.getSubTable("Contour" + (i + 1));
     	  
     	  Rect rect = Imgproc.boundingRect(pointList.get(i));
     	  double[] size = {rect.width, rect.height};
