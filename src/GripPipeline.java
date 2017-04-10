@@ -40,9 +40,9 @@ public class GripPipeline {
 	public void process(Mat source0) {
 		// Step RGB_Threshold0:
 		Mat rgbThresholdInput = source0;
-		double[] rgbThresholdRed = {32.10431654676256, 164.08319185059423};
+		double[] rgbThresholdRed = {29.81115107913666, 166.2478777589134};
 		double[] rgbThresholdGreen = {194.91906474820146, 255.0};
-		double[] rgbThresholdBlue = {105.48561151079139, 252.83531409168083};
+		double[] rgbThresholdBlue = {105.48561151079139, 250.67062818336166};
 		rgbThreshold(rgbThresholdInput, rgbThresholdRed, rgbThresholdGreen, rgbThresholdBlue, rgbThresholdOutput);
 
 		// Step CV_dilate0:
@@ -71,7 +71,7 @@ public class GripPipeline {
 		double filterContoursMaxVertices = 1000000.0;
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.3;
-		double filterContoursMaxRatio = 0.5;
+		double filterContoursMaxRatio = 0.55;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 		// Step Convex_Hulls0:
