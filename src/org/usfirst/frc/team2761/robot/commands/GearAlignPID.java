@@ -111,6 +111,7 @@ public class GearAlignPID extends Command {
     protected void end() {
     	System.out.println("GearAlignPID is finished!");
     	pidController.disable();
+    	pidController.free();
     	driveTrain.stop();
     }
 

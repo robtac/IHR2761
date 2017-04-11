@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.*;
+import org.usfirst.frc.team2761.robot.commands.auto.PivotPID;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,9 @@ public class OI {
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
 	
+	public static Joystick climberJoystick = new Joystick(3);
+	public static JoystickButton climberTrigger = new JoystickButton(climberJoystick, 1);
+	
 	public static XboxController xbox = new XboxController(2);
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
 	public static JoystickButton buttonB = new JoystickButton(xbox, 2);
@@ -37,8 +41,10 @@ public class OI {
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
-		OI.leftTrigger.whileHeld(new TestCommand());
-		OI.rightTrigger.whenPressed(new Gears());
+		OI.leftTrigger.whileHeld(new PivotPID(600));
+		OI.rightTrigger.whenPressed(new ZeroEncoders());
+		
+		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		
 		OI.xbox.a.whileHeld(new RunGearIntake());
 		OI.xbox.x.whileHeld(new RunGearIntakeBack());
