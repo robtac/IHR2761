@@ -51,9 +51,13 @@ public class RobotMap {
     public static double defaultVisionI = 0.000;
     public static double defaultVisionD = 0.000;
     
-    public static double defaultPivotP = 1.000;
-    public static double defaultPivotI = 0.000;
-    public static double defaultPivotD = 0.000;
+    public static double defaultPivotSpeedP = 1.000;
+    public static double defaultPivotSpeedI = 0.000;
+    public static double defaultPivotSpeedD = 0.000;
+    
+    public static double defaultPivotAdditiveP = 0.035;
+    public static double defaultPivotAdditiveI = 0.000;
+    public static double defaultPivotAdditiveD = 0.000;
     
     public static boolean hasEncoders = true;
     public static boolean hasGyro = false;

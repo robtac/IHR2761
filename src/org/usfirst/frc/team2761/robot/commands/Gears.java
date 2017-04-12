@@ -30,15 +30,15 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroEncoders());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(50));
+    	addSequential(new Drive(60));
     	addSequential(new ZeroEncoders());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new PivotTurn(1));
+    	addSequential(new PivotTurn(1.3));
     	addSequential(new ZeroEncoders());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(20));
+    	addSequential(new Drive(40));
     	addSequential(new ZeroEncoders());
     	addSequential(new Wait(0.01));
     	
@@ -46,6 +46,6 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroEncoders());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(20));
+    	addSequential(new Drive(25));
     }
 }

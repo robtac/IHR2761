@@ -37,11 +37,11 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
-//		OI.leftTrigger.whenPressed(new Gears());
+		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
-		OI.leftTrigger.whileHeld(new PivotPID(600));
+//		OI.leftTrigger.whenPressed(new PivotPID(360));
 		OI.rightTrigger.whenPressed(new ZeroEncoders());
 		
 		OI.climberTrigger.whileHeld(new RunClimberJoy());

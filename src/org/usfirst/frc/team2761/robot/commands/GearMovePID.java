@@ -77,7 +77,7 @@ public class GearMovePID extends Command {
 	    	pidController.setAbsoluteTolerance(10);
 			
 			final double MIN_SPEED = 0.05;
-			final double MAX_SPEED = 0.2;
+			final double MAX_SPEED = 0.25;
 			
 			pidController.setOutputRange(-MAX_SPEED, MAX_SPEED);
 			
@@ -142,7 +142,7 @@ public class GearMovePID extends Command {
     	System.out.println("Contour Difference: " + contourDifference +
     			" --- Difference Proportion: " + differenceProportion);
     	
-    	if (differenceProportion > 0.25) {
+    	if (differenceProportion > 0.5) {
     		return true;
     	} else {
     		return false;

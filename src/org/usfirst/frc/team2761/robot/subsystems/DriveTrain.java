@@ -40,6 +40,8 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Vision I", RobotMap.defaultVisionI);
 		SmartDashboard.putNumber("Vision D", RobotMap.defaultVisionD);
 		
+		zeroEncoders();
+		
 		gyro = new AnalogGyro(0);
 		gyro.calibrate();
 		setInput(true);
@@ -129,6 +131,13 @@ public class DriveTrain extends Subsystem {
 	
 	public void pivot (double speed) {
 		drive(speed, speed);
+	}
+	
+	public void pivot (double speed, double additive) {
+		double leftSpeed = speed + additive;
+		double rightSpeed = speed;
+		System.out.println("Left speed: " + leftSpeed + " --- Right speed: " + rightSpeed + " --- Speed: " + speed + " --- Additive: " + additive + " -- LE: " + getLeftDistance() + " -- RE: " + getRightDistance());
+		drive(-leftSpeed, -rightSpeed);
 	}
 	
 	public void moveTurn (double speed, double additive) {

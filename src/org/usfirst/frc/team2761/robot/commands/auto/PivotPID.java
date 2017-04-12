@@ -19,8 +19,9 @@ public class PivotPID extends Command {
 	DriveTrain driveTrain;
 	Boolean isTableValid;
 	NetworkTable table;
-	PIDController pidController;
+	PIDController speedPIDController, additivePIDController;
 	double angle;
+	double pivotSpeed, pivotAdditive;
 	
     public PivotPID(double angle) {
         // Use requires() here to declare subsystem dependencies
@@ -33,7 +34,7 @@ public class PivotPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	PIDSource source = new PIDSource() {
+    	PIDSource speedSource = new PIDSource() {
 			@Override
 			public void setPIDSourceType(PIDSourceType pidSource) {}
 
@@ -47,54 +48,85 @@ public class PivotPID extends Command {
 				double inchesTurned = (driveTrain.getLeftDistance() - driveTrain.getRightDistance()) / 2;
 				double turnCircumference = 22 * Math.PI;
 				double currentAngle = inchesTurned / turnCircumference * 360;
-				System.out.println("Current Angle: " + currentAngle);
 				return currentAngle;
 			}
     	};
     	
-    	PIDOutput output = new PIDOutput() {
+    	PIDOutput speedOutput = new PIDOutput() {
 			@Override
 			public void pidWrite(double output) {
-				driveTrain.pivot(-output);
+				pivotSpeed = output;
 			}
     	};
     	
-    	final double kP = SmartDashboard.getNumber("Pivot P", RobotMap.defaultPivotP);
-    	final double kI = SmartDashboard.getNumber("Pivot I", RobotMap.defaultPivotI);
-    	final double kD = SmartDashboard.getNumber("Pivot D", RobotMap.defaultPivotD);
+    	PIDSource additiveSource = new PIDSource() {
+			@Override
+			public void setPIDSourceType(PIDSourceType pidSource) {}
+
+			@Override
+			public PIDSourceType getPIDSourceType() {
+				return PIDSourceType.kDisplacement;
+			}
+
+			@Override
+			public double pidGet() {
+				double sideDifference = driveTrain.getLeftDistance() + driveTrain.getRightDistance();
+				return sideDifference;
+			}
+    	};
     	
+    	PIDOutput additiveOutput = new PIDOutput() {
+			@Override
+			public void pidWrite(double output) {
+				pivotAdditive = output;
+			}
+    	};
     	
-    	pidController = new PIDController(kP, kI, kD, source, output);
+    	final double kPSpeed = SmartDashboard.getNumber("Pivot P", RobotMap.defaultPivotSpeedP);
+    	final double kISpeed = SmartDashboard.getNumber("Pivot I", RobotMap.defaultPivotSpeedI);
+    	final double kDSpeed = SmartDashboard.getNumber("Pivot D", RobotMap.defaultPivotSpeedD);
+    	final double kPAdditive = SmartDashboard.getNumber("Pivot P", RobotMap.defaultPivotAdditiveP);
+    	final double kIAdditive = SmartDashboard.getNumber("Pivot I", RobotMap.defaultPivotAdditiveI);
+    	final double kDAdditive = SmartDashboard.getNumber("Pivot D", RobotMap.defaultPivotAdditiveD);
     	
-    	pidController.setAbsoluteTolerance(2);
+    	speedPIDController = new PIDController(kPSpeed, kISpeed, kDSpeed, speedSource, speedOutput);
+    	additivePIDController = new PIDController(kPAdditive, kIAdditive, kDAdditive, additiveSource, additiveOutput);
+    	
+    	speedPIDController.setAbsoluteTolerance(5);
+    	additivePIDController.setAbsoluteTolerance(2);
 		
-		final double MAX_SPEED = 0.25;
+		final double MAX_SPEED = 0.35;
+		final double MAX_ADDITIVE = 0.15;
 		
-		pidController.setOutputRange(-MAX_SPEED, MAX_SPEED);
+		speedPIDController.setOutputRange(-MAX_SPEED, MAX_SPEED);
+		additivePIDController.setOutputRange(-MAX_ADDITIVE, MAX_ADDITIVE);
 		
-		pidController.setToleranceBuffer(2);
+		speedPIDController.setToleranceBuffer(2);
+		additivePIDController.setToleranceBuffer(2);
 		
-		pidController.setSetpoint(angle);
+		speedPIDController.setSetpoint(angle);
+		additivePIDController.setSetpoint(0);
 		
-		pidController.enable();
-		
-		System.out.println("Vision P: " + kP);
+		speedPIDController.enable();
+		additivePIDController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Error: " + pidController.getError());
+    	driveTrain.pivot(pivotSpeed, pivotAdditive);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return pidController.onTarget();
+        return speedPIDController.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	pidController.disable();
-    	pidController.free();
+    	speedPIDController.disable();
+    	speedPIDController.free();
+    	additivePIDController.disable();
+    	additivePIDController.free();
     	driveTrain.stop();
     }
 
