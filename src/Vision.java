@@ -27,7 +27,7 @@ public class Vision {
     // This stores our reference to our mjpeg server for streaming the input image
     MjpegServer shooterStream = new MjpegServer("MJPEG Server", streamPort);
 
-//    MjpegServer gearsStream = new MjpegServer("MJPEG Server", 1187);
+    MjpegServer gearsStream = new MjpegServer("MJPEG Server", 1187);
     // Selecting a Camera
     // Uncomment one of the 2 following camera options
     // The top one receives a stream from another device, and performs operations based on that
@@ -61,14 +61,14 @@ public class Vision {
     // Usually this will be on device 0, but there are other overloads
     // that can be used
     UsbCamera shooterCamera = setUsbCamera(0, shooterStream);
-//    UsbCamera gearsCamera = setUsbCamera(1, gearsStream);
+    UsbCamera gearsCamera = setUsbCamera(1, gearsStream);
     // Set the resolution for our camera, since this is over USB
     //camera.setExposureAuto();
     shooterCamera.setExposureManual(30);
     shooterCamera.setResolution(320, 240);
     
-//    gearsCamera.setExposureManual(30);
-//    gearsCamera.setResolution(256, 192);
+    gearsCamera.setExposureManual(30);
+    gearsCamera.setResolution(320, 240);
     
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
@@ -76,18 +76,18 @@ public class Vision {
     CvSink shooterImageSink = new CvSink("Shooter Image Grabber");
     shooterImageSink.setSource(shooterCamera);
     
-//    CvSink gearsImageSink = new CvSink("Gears Image Grabber");
-//    gearsImageSink.setSource(gearsCamera);
+    CvSink gearsImageSink = new CvSink("Gears Image Grabber");
+    gearsImageSink.setSource(gearsCamera);
     
     // This creates a CvSource to use. This will take in a Mat image that has had OpenCV operations
     // operations 
-    CvSource shooterImageSource = new CvSource("Shooter Image Source", VideoMode.PixelFormat.kMJPEG, 256, 192, 30);
+    CvSource shooterImageSource = new CvSource("Shooter Image Source", VideoMode.PixelFormat.kMJPEG, 320, 240, 30);
     MjpegServer shooterCvStream = new MjpegServer("Shooter Image Stream", 1186);
     shooterCvStream.setSource(shooterImageSource);
     
-//    CvSource gearsImageSource = new CvSource("Gears Image Source", VideoMode.PixelFormat.kMJPEG, 640, 480, 30);
-//    MjpegServer gearsCvStream = new MjpegServer("Gears Image Stream", 1186);
-//    shooterCvStream.setSource(shooterImageSource);
+    CvSource gearsImageSource = new CvSource("Gears Image Source", VideoMode.PixelFormat.kMJPEG, 320, 240, 30);
+    MjpegServer gearsCvStream = new MjpegServer("Gears Image Stream", 1188);
+    gearsCvStream.setSource(gearsImageSource);
 
     // All Mats and Lists should be stored outside the loop to avoid allocations
     // as they are expensive to create
@@ -101,11 +101,18 @@ public class Vision {
     
     int imageNumber = 0;
     table.putBoolean("takeImage", false);
+    table.putBoolean("isGears", true);
     while (true) {
     	long startTime = System.currentTimeMillis();
       // Grab a frame. If it has a frame time of 0, there was an error.
       // Just skip and continue
-      long frameTime = shooterImageSink.grabFrame(inputImage);
+      boolean isGears = table.getBoolean("isGears", true);
+      long frameTime = 0;
+      if (isGears) {
+    	  frameTime = shooterImageSink.grabFrame(inputImage);
+      } else {
+    	  frameTime = gearsImageSink.grabFrame(inputImage);
+      }
       if (frameTime == 0) continue;
       
       if (table.getBoolean("takeImage", false)) {
@@ -164,7 +171,11 @@ public class Vision {
       // Here is where you would write a processed image that you want to restreams
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
-      shooterImageSource.putFrame(inputImage);
+      if (isGears) {
+    	  shooterImageSource.putFrame(inputImage);
+      } else {
+    	  gearsImageSource.putFrame(inputImage);
+      }
     }
   }
 
