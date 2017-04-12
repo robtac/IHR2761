@@ -25,6 +25,7 @@ public class DriveTrain extends Subsystem {
 	
 	private static DriveTrain instance = new DriveTrain();
 	Gyro gyro;
+	public double gyroZeroValue;
 	
 	public double circumference = 4 * 2 * Math.PI;
 	
@@ -45,6 +46,7 @@ public class DriveTrain extends Subsystem {
 		gyro = new AnalogGyro(0);
 		gyro.calibrate();
 		setInput(true);
+		gyroZeroValue = 0;
 		
 		backLeftDrive.configEncoderCodesPerRev(450);
 		backLeftDrive.reverseSensor(false);
@@ -89,12 +91,12 @@ public class DriveTrain extends Subsystem {
 		return SmartDashboard.getBoolean("DriverInput", true);
 	}
 	
-	public void moveForward (double feet) {
-		
+	public double getAngle () {
+		return gyro.getAngle() - gyroZeroValue;
 	}
 	
-	public double getAngle () {
-		return gyro.getAngle();
+	public void zeroGyro() {
+		gyroZeroValue = gyro.getAngle();
 	}
 	
 	public boolean moveAngle (double targetAngle, double initialAngle) {
@@ -136,7 +138,7 @@ public class DriveTrain extends Subsystem {
 	public void pivot (double speed, double additive) {
 		double leftSpeed = speed + additive;
 		double rightSpeed = speed;
-		System.out.println("Left speed: " + leftSpeed + " --- Right speed: " + rightSpeed + " --- Speed: " + speed + " --- Additive: " + additive + " -- LE: " + getLeftDistance() + " -- RE: " + getRightDistance());
+//		System.out.println("Left speed: " + leftSpeed + " --- Right speed: " + rightSpeed + " --- Speed: " + speed + " --- Additive: " + additive + " -- LE: " + getLeftDistance() + " -- RE: " + getRightDistance());
 		drive(-leftSpeed, -rightSpeed);
 	}
 	
@@ -157,6 +159,12 @@ public class DriveTrain extends Subsystem {
 		backLeftDrive.set(1);
 		frontRightDrive.set(1);
 		backRightDrive.set(1);
+	}
+	
+	public void forward (double speed, double additive) {
+		double leftSpeed = speed + additive;
+		double rightSpeed = speed;
+		drive(-leftSpeed, rightSpeed);
 	}
 	
 	public void setPosition (double distance) {

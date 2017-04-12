@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.*;
+import org.usfirst.frc.team2761.robot.commands.auto.ForwardEncoderPID;
 import org.usfirst.frc.team2761.robot.commands.auto.PivotPID;
+import org.usfirst.frc.team2761.robot.commands.auto.ZeroGyro;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,7 +43,7 @@ public class OI {
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 //		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
-//		OI.leftTrigger.whenPressed(new PivotPID(360));
+//		OI.leftTrigger.whenPressed(new PivotGyroPID(90));
 		OI.rightTrigger.whenPressed(new ZeroEncoders());
 		
 		OI.climberTrigger.whileHeld(new RunClimberJoy());

@@ -19,7 +19,7 @@ public class GearMovePID extends Command {
 	DriveTrain driveTrain;
 	PIDController pidController;
 	NetworkTable table, contourTable;
-	Boolean isTableValid;
+	Boolean isTableValid, isValids;
 	
     public GearMovePID() {
         // Use requires() here to declare subsystem dependencies
@@ -54,6 +54,7 @@ public class GearMovePID extends Command {
 						return 0;
 					double[] blankArray = {};
 			    	double[] centerDifference = table.getNumberArray("CenterDifference", blankArray);
+			    	isValids = isValid;
 			    	return centerDifference[0];
 				}
 	    	};
@@ -77,7 +78,7 @@ public class GearMovePID extends Command {
 	    	pidController.setAbsoluteTolerance(10);
 			
 			final double MIN_SPEED = 0.05;
-			final double MAX_SPEED = 0.25;
+			final double MAX_SPEED = 0.1;
 			
 			pidController.setOutputRange(-MAX_SPEED, MAX_SPEED);
 			
@@ -101,7 +102,7 @@ public class GearMovePID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 //    	return false;
-    	if (isTableValid)
+    	if (isValids)
     		return testCloseness();
     	else
     		return true;

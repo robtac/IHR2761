@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2761.robot.commands;
 
 import org.usfirst.frc.team2761.robot.commands.auto.Drive;
+import org.usfirst.frc.team2761.robot.commands.auto.ForwardEncoderPID;
 import org.usfirst.frc.team2761.robot.commands.auto.Wait;
+import org.usfirst.frc.team2761.robot.commands.auto.ZeroGyro;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -28,24 +30,29 @@ public class Gears extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(60));
+    	addSequential(new ForwardEncoderPID(60));
     	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new PivotTurn(1.3));
+    	addSequential(new PivotGyroPID(30));
     	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(40));
+    	addSequential(new ForwardEncoderPID(40));
     	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
     	addSequential(new GearMovePID());
     	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new Drive(25));
+    	addSequential(new ForwardEncoderPID(15));
     }
 }

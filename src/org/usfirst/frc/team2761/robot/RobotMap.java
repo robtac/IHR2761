@@ -47,7 +47,7 @@ public class RobotMap {
     public static double shooterSpeed = 4300;
 //    public static double shooterSpeed = 91;
     
-    public static double defaultVisionP = 0.005;
+    public static double defaultVisionP = 0.003;
     public static double defaultVisionI = 0.000;
     public static double defaultVisionD = 0.000;
     
@@ -58,6 +58,22 @@ public class RobotMap {
     public static double defaultPivotAdditiveP = 0.035;
     public static double defaultPivotAdditiveI = 0.000;
     public static double defaultPivotAdditiveD = 0.000;
+    
+    public static double defaultPivotGyroSpeedP = 0.050;
+    public static double defaultPivotGyroSpeedI = 0.000;
+    public static double defaultPivotGyroSpeedD = 0.000;
+    
+    public static double defaultPivotGyroAdditiveP = 0.035;
+    public static double defaultPivotGyroAdditiveI = 0.000;
+    public static double defaultPivotGyroAdditiveD = 0.000;
+    
+    public static double defaultForwardSpeedP = 0.050;
+    public static double defaultForwardSpeedI = 0.000;
+    public static double defaultForwardSpeedD = 0.000;
+    
+    public static double defaultForwardAdditiveP = 0.035;
+    public static double defaultForwardAdditiveI = 0.000;
+    public static double defaultForwardAdditiveD = 0.000;
     
     public static boolean hasEncoders = true;
     public static boolean hasGyro = false;
