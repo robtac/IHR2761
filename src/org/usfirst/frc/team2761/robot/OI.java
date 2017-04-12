@@ -4,9 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2761.robot.commands.*;
-import org.usfirst.frc.team2761.robot.commands.auto.ForwardEncoderPID;
-import org.usfirst.frc.team2761.robot.commands.auto.PivotPID;
-import org.usfirst.frc.team2761.robot.commands.auto.ZeroGyro;
+import org.usfirst.frc.team2761.robot.commands.auto.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,6 +20,8 @@ public class OI {
 	// Initializes the joysticks and their buttons
 	public static Joystick leftJoystick = new Joystick(0);
 	public static JoystickButton leftTrigger = new JoystickButton(leftJoystick, 1);
+	public static JoystickButton leftThumbDown = new JoystickButton(leftJoystick, 2);
+	public static JoystickButton leftThumbLeft = new JoystickButton(leftJoystick, 3);
 	
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
@@ -39,6 +39,9 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
+		OI.leftThumbDown.whenPressed(new GearReleaseForward(0.25));
+		OI.leftThumbLeft.whenPressed(new GearReleaseBack(0.25));
+		
 		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());
 //		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));

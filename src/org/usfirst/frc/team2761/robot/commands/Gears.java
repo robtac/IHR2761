@@ -33,12 +33,12 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new ForwardEncoderPID(60));
+    	addSequential(new ForwardEncoderPID(63));
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new PivotGyroPID(30));
+    	addSequential(new PivotGyroPID(35));
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
@@ -53,6 +53,6 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new ForwardEncoderPID(15));
+    	addSequential(new ForwardEncoderPID(13));
     }
 }

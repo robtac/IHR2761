@@ -47,7 +47,7 @@ public class RobotMap {
     public static double shooterSpeed = 4300;
 //    public static double shooterSpeed = 91;
     
-    public static double defaultVisionP = 0.003;
+    public static double defaultVisionP = 0.002;
     public static double defaultVisionI = 0.000;
     public static double defaultVisionD = 0.000;
     
