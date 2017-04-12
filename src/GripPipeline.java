@@ -40,16 +40,16 @@ public class GripPipeline {
 	public void process(Mat source0) {
 		// Step RGB_Threshold0:
 		Mat rgbThresholdInput = source0;
-		double[] rgbThresholdRed = {29.81115107913666, 166.2478777589134};
-		double[] rgbThresholdGreen = {194.91906474820146, 255.0};
-		double[] rgbThresholdBlue = {105.48561151079139, 250.67062818336166};
+		double[] rgbThresholdRed = {29.81115107913666, 164.08319185059423};
+		double[] rgbThresholdGreen = {197.21223021582736, 255.0};
+		double[] rgbThresholdBlue = {105.48561151079139, 255.0};
 		rgbThreshold(rgbThresholdInput, rgbThresholdRed, rgbThresholdGreen, rgbThresholdBlue, rgbThresholdOutput);
 
 		// Step CV_dilate0:
 		Mat cvDilateSrc = rgbThresholdOutput;
 		Mat cvDilateKernel = new Mat();
 		Point cvDilateAnchor = new Point(-1, -1);
-		double cvDilateIterations = 1;
+		double cvDilateIterations = 1.0;
 		int cvDilateBordertype = Core.BORDER_CONSTANT;
 		Scalar cvDilateBordervalue = new Scalar(-1);
 		cvDilate(cvDilateSrc, cvDilateKernel, cvDilateAnchor, cvDilateIterations, cvDilateBordertype, cvDilateBordervalue, cvDilateOutput);
@@ -71,7 +71,7 @@ public class GripPipeline {
 		double filterContoursMaxVertices = 1000000.0;
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.3;
-		double filterContoursMaxRatio = 0.65;
+		double filterContoursMaxRatio = 0.6;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 		// Step Convex_Hulls0:
