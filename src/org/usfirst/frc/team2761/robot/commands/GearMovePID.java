@@ -101,8 +101,8 @@ public class GearMovePID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	return false;
-    	if (isValids)
+    	boolean isValid = table.getBoolean("isValid", false);
+    	if (isValid)
     		return testCloseness();
     	else
     		return true;
