@@ -29,6 +29,8 @@ public class OI {
 	
 	public static Joystick climberJoystick = new Joystick(3);
 	public static JoystickButton climberTrigger = new JoystickButton(climberJoystick, 1);
+	public static JoystickButton climberThumbDown = new JoystickButton(climberJoystick, 2);
+	public static JoystickButton climberThumbRight = new JoystickButton(climberJoystick, 3);
 	
 	public static XboxController xbox = new XboxController(2);
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
@@ -44,7 +46,8 @@ public class OI {
 		OI.leftThumbLeft.whenPressed(new GearReleaseClose());
 		OI.leftThumbRight.whenPressed(new ForwardEncoderPID(-40));
 		
-//		OI.leftTrigger.whenPressed(new Gears());
+		OI.climberThumbDown.whenPressed(new Gears());
+		OI.climberThumbRight.whenPressed(new GearAlignBoilerPID());
 //		OI.rightTrigger.whileHeld(new Shoot());
 		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));

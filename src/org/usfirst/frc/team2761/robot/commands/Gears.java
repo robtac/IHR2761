@@ -26,6 +26,8 @@ public class Gears extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addSequential(new ChangeCamera(true));
+    	
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
@@ -40,10 +42,10 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new ForwardEncoderPID(40));
-    	addSequential(new ZeroEncoders());
-    	addSequential(new ZeroGyro());
-    	addSequential(new Wait(0.01));
+//    	addSequential(new ForwardEncoderPID(40));
+//    	addSequential(new ZeroEncoders());
+//    	addSequential(new ZeroGyro());
+//    	addSequential(new Wait(0.01));
     	
     	addSequential(new ChangeCamera(true));
     	addSequential(new GearMovePID());
@@ -64,7 +66,10 @@ public class Gears extends CommandGroup {
     	addSequential(new Wait(0.01));
     	
     	addSequential(new ChangeCamera(false));
-    	
-    	addSequential(new GearAlignPID());
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.2));
+//    	
+    	addSequential(new GearAlignBoilerPID());
     }
 }

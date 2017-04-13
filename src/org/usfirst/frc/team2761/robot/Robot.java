@@ -50,6 +50,9 @@ public class Robot extends IterativeRobot {
 		//NetworkTable.setServerMode();
 		//NetworkTable.initialize();
 		oi = new OI();
+		
+		new ChangeCamera(true);
+		
 		chooser.addDefault("Default Auto", new TankDrive());
 		//chooser.addObject("My Auto", new AutoDriveForward());
 		SmartDashboard.putData("Auto mode", chooser);

@@ -54,6 +54,10 @@ public class RobotMap {
     public static double defaultVisionI = 0.000;
     public static double defaultVisionD = 0.000;
     
+    public static double defaultVisionPivotP = 0.005;
+    public static double defaultVisionPivotI = 0.000;
+    public static double defaultVisionPivotD = 0.000;
+    
     public static double defaultPivotSpeedP = 1.000;
     public static double defaultPivotSpeedI = 0.000;
     public static double defaultPivotSpeedD = 0.000;

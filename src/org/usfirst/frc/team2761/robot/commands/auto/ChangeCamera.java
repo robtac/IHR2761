@@ -22,5 +22,6 @@ public class ChangeCamera extends InstantCommand {
     protected void initialize() {
     	table = NetworkTable.getTable("Gears");
     	table.putBoolean("isGears", isGears);
+    	System.out.println(" -- Switching to: " + table.getBoolean("isGears", true));
     }
 }
