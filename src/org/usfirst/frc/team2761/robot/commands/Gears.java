@@ -54,5 +54,17 @@ public class Gears extends CommandGroup {
     	addSequential(new Wait(0.01));
     	
     	addSequential(new ForwardEncoderPID(13));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new GearReleaseOpen());
+    	
+    	addSequential(new ForwardEncoderPID(-10));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new GearReleaseClose());
     }
 }

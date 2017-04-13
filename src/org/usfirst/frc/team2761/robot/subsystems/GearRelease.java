@@ -4,6 +4,7 @@ import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +18,9 @@ public class GearRelease extends Subsystem {
 	public static GearRelease instance = new GearRelease();
 	CANTalon gearRelease = new CANTalon (RobotMap.gearRelease);
 	
+	DigitalInput limitIsClosed = new DigitalInput(RobotMap.GearReleaseClosedLimit);
+	DigitalInput limitIsOpen = new DigitalInput(RobotMap.GearReleaseOpenLimit);
+	
 	public GearRelease () {
 		gearRelease.enableBrakeMode(true);
 	}
@@ -27,6 +31,14 @@ public class GearRelease extends Subsystem {
 	
 	public void stop () {
 		gearRelease.set(0);
+	}
+	
+	public boolean isFullClosed () {
+		return limitIsClosed.get();
+	}
+	
+	public boolean isFullOpen () {
+		return !limitIsOpen.get();
 	}
 	
 	public static GearRelease getInstance () {

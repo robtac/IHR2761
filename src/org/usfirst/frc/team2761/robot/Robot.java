@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2761.robot.commands.TankDrive;
 import org.usfirst.frc.team2761.robot.commands.auto.*;
+import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -149,6 +150,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		System.out.println("isOpen: " + GearRelease.getInstance().isFullOpen() + " -- isClosed: " + GearRelease.getInstance().isFullClosed());
 		LiveWindow.run();
 	}
 }

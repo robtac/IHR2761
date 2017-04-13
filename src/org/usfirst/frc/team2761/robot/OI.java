@@ -39,8 +39,8 @@ public class OI {
 	
 	static {
 		// Dictates what the buttons do
-		OI.leftThumbDown.whenPressed(new GearReleaseForward(0.25));
-		OI.leftThumbLeft.whenPressed(new GearReleaseBack(0.25));
+		OI.leftThumbDown.whenPressed(new GearReleaseOpen());
+		OI.leftThumbLeft.whenPressed(new GearReleaseClose());
 		
 		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());
