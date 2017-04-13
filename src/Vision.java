@@ -93,7 +93,8 @@ public class Vision {
     // as they are expensive to create
     Mat inputImage = new Mat();
     
-    GripPipeline grip = new GripPipeline();
+    GripGears gripGears = new GripGears();
+    GripBoiler gripBoiler = new GripBoiler();
     
     NetworkTable table = NetworkTable.getTable("Gears"); 
     NetworkTable contourTable = NetworkTable.getTable("Gears");
@@ -115,6 +116,11 @@ public class Vision {
       }
       if (frameTime == 0) continue;
       
+      // Flip image from upside down boiler camera
+      if (!isGears) {
+    	  Core.flip(inputImage, inputImage, -1);
+      }
+      
       if (table.getBoolean("takeImage", false)) {
     	  String filename = "image" + imageNumber + ".png"; imageNumber++;
     	    System.out.println(String.format("Writing %s", filename));
@@ -124,14 +130,22 @@ public class Vision {
       
       //Imgproc.resize(inputImage, inputImage, new Size(320, 240));
       
-      grip.process(inputImage);
+      if(isGears) {
+    	  gripGears.process(inputImage);
+      } else {
+    	  gripBoiler.process(inputImage);
+      }
       double[] imageSize = {inputImage.width(), inputImage.height()};
       Point imageCenter = new Point(imageSize[0] / 2, imageSize[1] / 2);
       table.putNumberArray("Image Size", imageSize);
       // Below is where you would do your OpenCV operations on the provided image
       // The sample below just changes color source to HSV
-      ArrayList<MatOfPoint> pointList = grip.convexHullsOutput();
-      table.putNumber("Number of Contours", pointList.size());
+      ArrayList<MatOfPoint> pointList;
+      if(isGears) {
+    	  pointList = gripGears.convexHullsOutput();;
+      } else {
+    	  pointList = gripBoiler.convexHullsOutput();;
+      }
       ArrayList<Point> centerList = new ArrayList<Point>();
       if (pointList.size() >= 2 && pointList.size() <= 2) {
     	  table.putBoolean("isValid", true);
