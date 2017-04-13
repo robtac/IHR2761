@@ -22,6 +22,7 @@ public class OI {
 	public static JoystickButton leftTrigger = new JoystickButton(leftJoystick, 1);
 	public static JoystickButton leftThumbDown = new JoystickButton(leftJoystick, 2);
 	public static JoystickButton leftThumbLeft = new JoystickButton(leftJoystick, 3);
+	public static JoystickButton leftThumbRight = new JoystickButton(leftJoystick, 4);
 	
 	public static Joystick rightJoystick = new Joystick(1);
 	public static JoystickButton rightTrigger = new JoystickButton(rightJoystick, 1);
@@ -41,6 +42,7 @@ public class OI {
 		// Dictates what the buttons do
 		OI.leftThumbDown.whenPressed(new GearReleaseOpen());
 		OI.leftThumbLeft.whenPressed(new GearReleaseClose());
+		OI.leftThumbRight.whenPressed(new ForwardEncoderPID(-40));
 		
 		OI.leftTrigger.whenPressed(new Gears());
 //		OI.rightTrigger.whileHeld(new Shoot());

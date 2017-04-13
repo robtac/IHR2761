@@ -62,7 +62,7 @@ public class GearMovePID extends Command {
 	    	PIDOutput driveOutput = new PIDOutput() {
 				@Override
 				public void pidWrite(double output) {
-					driveTrain.moveTurn(0.2, output);
+					driveTrain.moveTurn(0.19, output);
 				}
 	    	};
 	    	
