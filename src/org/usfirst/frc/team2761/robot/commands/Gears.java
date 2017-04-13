@@ -1,9 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands;
 
-import org.usfirst.frc.team2761.robot.commands.auto.Drive;
-import org.usfirst.frc.team2761.robot.commands.auto.ForwardEncoderPID;
-import org.usfirst.frc.team2761.robot.commands.auto.Wait;
-import org.usfirst.frc.team2761.robot.commands.auto.ZeroGyro;
+import org.usfirst.frc.team2761.robot.commands.auto.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -48,6 +45,7 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
+    	addSequential(new ChangeCamera(true));
     	addSequential(new GearMovePID());
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
@@ -65,6 +63,8 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new GearReleaseClose());
+    	addSequential(new ChangeCamera(false));
+    	
+    	addSequential(new GearAlignPID());
     }
 }
