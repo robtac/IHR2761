@@ -22,7 +22,7 @@ public class Paddle extends Subsystem {
 	
 	public void setSpeed () {
 		System.out.println("Paddle setSpeed");
-		paddle.set(0.25);
+		paddle.set(-0.27);
 	}
 	
 	public void stop () {

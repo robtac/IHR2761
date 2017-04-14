@@ -44,10 +44,10 @@ public class RobotMap {
 	
 	// Default PID values for the shooter
 	public static double shooterF = 0.0346;
-	public static double shooterP = 0.08525;
-    public static double shooterI = 0.001;
-    public static double shooterD = 0.8525;
-    public static double shooterSpeed = 4300;
+	public static double shooterP = 0.019;
+    public static double shooterI = 0.000;
+    public static double shooterD = 0.000;
+    public static double shooterSpeed = 4000;
 //    public static double shooterSpeed = 91;
     
     public static double defaultVisionP = 0.002;

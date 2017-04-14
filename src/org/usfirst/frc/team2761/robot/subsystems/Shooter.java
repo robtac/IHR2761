@@ -25,19 +25,19 @@ public class Shooter extends Subsystem {
 	public Shooter() {
 		System.out.println("Shooter const");
 		
-		shooterMotor1.changeControlMode(TalonControlMode.Speed);
-		shooterMotor1.set(0);
-//		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
+//		shooterMotor1.changeControlMode(TalonControlMode.Speed);
+//		shooterMotor1.set(0);
+		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
 		shooterMotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooterMotor1.reverseSensor(true);
     	shooterMotor1.setEncPosition(0);
     	shooterMotor1.configEncoderCodesPerRev(1024);
-    	shooterMotor1.setF(RobotMap.shooterF);
-		setPIDShoot();
+//    	shooterMotor1.setF(RobotMap.shooterF);
+//		setPIDShoot();
 		
 //		shooterMotor2.changeControlMode(TalonControlMode.Follower);
 //		shooterMotor2.set(RobotMap.shooterMotor1);
-//		shooterMotor2.changeControlMode(TalonControlMode.PercentVbus);
+		shooterMotor2.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	// Prints out the motor speed to the console
@@ -56,6 +56,11 @@ public class Shooter extends Subsystem {
 //		shooterMotor2.set(speed);
 //		shooterMotor1.set(0.91);
 	}
+	
+	public void setVBus (double val) {
+		shooterMotor1.set(val);
+		shooterMotor2.set(val);
+	}
 
 	// Stops the motor abruptly
 	public void stop() {
@@ -72,6 +77,14 @@ public class Shooter extends Subsystem {
 		shooterMotor1.setP(RobotMap.shooterP);
 		shooterMotor1.setI(RobotMap.shooterI);
 		shooterMotor1.setD(RobotMap.shooterD);
+		
+		shooterMotor2.setP(RobotMap.shooterP);
+		shooterMotor2.setI(RobotMap.shooterI);
+		shooterMotor2.setD(RobotMap.shooterD);
+	}
+	
+	public double getSpeed () {
+		return shooterMotor1.getSpeed();
 	}
 	
 	// Returns the instance of the main subsystem

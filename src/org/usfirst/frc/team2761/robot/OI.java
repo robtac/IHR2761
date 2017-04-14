@@ -7,6 +7,8 @@ import org.usfirst.frc.team2761.robot.commands.*;
 import org.usfirst.frc.team2761.robot.commands.auto.*;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShootPID;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -70,8 +72,8 @@ public class OI {
 		OI.xbox.b.whileHeld(new RunClimberFull());
 //		OI.xbox.x.whileHeld(new RunClimberVariable());
 		OI.xbox.y.whileHeld(new RunClimber());
-		OI.xbox.start.whileHeld(new Shoot());
-		OI.xbox.back.whileHeld(new Shoot());
+		OI.xbox.start.whileHeld(new ShootPID());
+		OI.xbox.back.whileHeld(new runPaddle());
 //		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
 //		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
 //		OI.xbox.rb.whileHeld(new runPaddle());
