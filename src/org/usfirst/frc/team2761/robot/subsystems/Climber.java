@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.commands.ClimberJoystick;
+import org.usfirst.frc.team2761.robot.commands.climber.ClimberJoystick;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;

@@ -2,7 +2,7 @@ package org.usfirst.frc.team2761.robot.subsystems;
 
 import org.usfirst.frc.team2761.robot.OI;
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.commands.TankDrive;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
 import com.ctre.CANTalon;

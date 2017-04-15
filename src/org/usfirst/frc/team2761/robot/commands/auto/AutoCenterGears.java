@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -25,6 +27,6 @@ public class AutoCenterGears extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new AutoForward(120));
+    	addSequential(new Drive(120));
     }
 }

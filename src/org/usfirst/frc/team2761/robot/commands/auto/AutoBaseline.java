@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
 
 /**
  *
@@ -24,6 +25,6 @@ public class AutoBaseline extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new AutoForward(300));
+    	addSequential(new Drive(300));
     }
 }
