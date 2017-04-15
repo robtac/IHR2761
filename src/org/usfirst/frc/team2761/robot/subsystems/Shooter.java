@@ -42,8 +42,8 @@ public class Shooter extends Subsystem {
 	
 	// Prints out the motor speed to the console
 	public void printSpeed() {
-		double motorVelocity = (shooterMotor1.getSpeed());
-    	System.out.println("Is executing at: " + motorVelocity + " rpm");
+		double motorVelocity = shooterMotor1.getSpeed();
+//    	System.out.println("Is executing at: " + motorVelocity + " rpm");
 //    	motorVelocity = shooterMotor1.getSpeed() * ENCODERVELOCITY;
     	motorVelocity = shooterMotor1.getSpeed();
     	SmartDashboard.putNumber("Actual Shooter Speed", motorVelocity);

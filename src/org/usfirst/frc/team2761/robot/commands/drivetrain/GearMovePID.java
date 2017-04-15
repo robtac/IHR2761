@@ -62,14 +62,16 @@ public class GearMovePID extends Command {
 	    	PIDOutput driveOutput = new PIDOutput() {
 				@Override
 				public void pidWrite(double output) {
-					driveTrain.moveTurn(0.19, output);
+					driveTrain.moveTurn(0.22, output);
 				}
 	    	};
 	    	
-	    	final double kP = SmartDashboard.getNumber("Vision P", RobotMap.defaultVisionP);
-	    	final double kI = SmartDashboard.getNumber("Vision I", RobotMap.defaultVisionI);
-	    	final double kD = SmartDashboard.getNumber("Vision D", RobotMap.defaultVisionD);
-	    	
+//	    	final double kP = SmartDashboard.getNumber("Vision P", RobotMap.defaultVisionP);
+//	    	final double kI = SmartDashboard.getNumber("Vision I", RobotMap.defaultVisionI);
+//	    	final double kD = SmartDashboard.getNumber("Vision D", RobotMap.defaultVisionD);
+	    	final double kP = RobotMap.defaultVisionP;
+	    	final double kI = RobotMap.defaultVisionI;
+	    	final double kD = RobotMap.defaultVisionD;
 	    	
 	    	pidController = new PIDController(kP, kI, kD, visionSource, driveOutput);
 	    	

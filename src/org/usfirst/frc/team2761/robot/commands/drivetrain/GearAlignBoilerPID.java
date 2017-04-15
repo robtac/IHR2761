@@ -73,7 +73,7 @@ public class GearAlignBoilerPID extends Command {
 	    	
 	    	pidController.setInputRange(-100, 100);
 	    	
-	    	pidController.setAbsoluteTolerance(10);
+	    	pidController.setAbsoluteTolerance(15);
 			
 			final double MIN_SPEED = 0.1;
 			final double MAX_SPEED = 0.225;
@@ -92,11 +92,16 @@ public class GearAlignBoilerPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("PIDController get: " + pidController.get() + 
-    			" --- PIDController error: " + pidController.getError() + 
-    			" --- PIDController P: " + pidController.getP());
+//    	System.out.println("PIDController get: " + pidController.get() + 
+//    			" --- PIDController error: " + pidController.getError() + 
+//    			" --- PIDController P: " + pidController.getP());
+    	
+    	System.out.println("Error: " + pidController.getError() + 
+    			" -- onTarget: " + pidController.onTarget() + 
+    			" -- RobotMap: " + RobotMap.isBoilerAlignOnTarget);
+    	RobotMap.isBoilerAlignOnTarget = pidController.onTarget();
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	boolean isValid = table.getBoolean("isValid", false);
@@ -113,6 +118,7 @@ public class GearAlignBoilerPID extends Command {
     	pidController.disable();
     	pidController.free();
     	driveTrain.stop();
+    	RobotMap.isBoilerAlignOnTarget = false;
     }
 
     // Called when another command which requires one or more of the same

@@ -1,6 +1,10 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
+import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
+import org.usfirst.frc.team2761.robot.commands.paddle.RunPaddleGlobal;
+import org.usfirst.frc.team2761.robot.commands.shooter.ShootPID;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -27,6 +31,56 @@ public class AutoCenterGears extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new Drive(120));
+    	addSequential(new ChangeCamera(true));
+    	
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ForwardEncoderPID(20));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ChangeCamera(true));
+    	addSequential(new Wait(0.2));
+    	addSequential(new GearMovePID());
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ForwardEncoderPID(4));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new GearReleaseOpen());
+    	
+    	addSequential(new ForwardEncoderPID(-40));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addParallel(new ShootPID());
+    	
+    	addSequential(new PivotGyroPID(50));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ForwardEncoderPID(-18));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ChangeCamera(false));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.2));
+//    	
+//    	GearAlignBoilerPID a = new GearAlignBoilerPID();
+//    	addParallel(a);
+    	addParallel(new GearAlignBoilerPID());
+    	addParallel(new RunPaddleGlobal());
     }
 }

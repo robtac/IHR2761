@@ -74,7 +74,7 @@ public class GearAlignPID extends Command {
 	    	
 	    	pidController.setInputRange(-100, 100);
 	    	
-	    	pidController.setAbsoluteTolerance(10);
+	    	pidController.setAbsoluteTolerance(15);
 			
 			final double MIN_SPEED = 0.1;
 			final double MAX_SPEED = 0.225;
@@ -97,7 +97,7 @@ public class GearAlignPID extends Command {
     			" --- PIDController error: " + pidController.getError() + 
     			" --- PIDController P: " + pidController.getP());
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return false;

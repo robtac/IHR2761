@@ -16,6 +16,7 @@ public class GearReleaseOpen extends Command {
         // eg. requires(chassis);
     	gearRelease = GearRelease.getInstance();
     	requires(gearRelease);
+    	setTimeout(2);
     }
 
     // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class GearReleaseOpen extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return gearRelease.isFullOpen();
+        return gearRelease.isFullOpen() || isTimedOut();
     }
 
     // Called once after isFinished returns true

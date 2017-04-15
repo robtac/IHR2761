@@ -21,8 +21,9 @@ public class Paddle extends Subsystem {
 	}
 	
 	public void setSpeed () {
-		System.out.println("Paddle setSpeed");
-		paddle.set(-0.27);
+//		System.out.println("Paddle setSpeed");
+//		paddle.set(-0.27);
+		paddle.set(-0.3);
 	}
 	
 	public void stop () {

@@ -1,6 +1,17 @@
 
 package org.usfirst.frc.team2761.robot;
 
+import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoBaseline;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueLeft;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueRight;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoCenterGears;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoRedLeft;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoRedRight;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.DriveForward;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
+import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,12 +19,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
-import org.usfirst.frc.team2761.robot.commands.auto.*;
-import org.usfirst.frc.team2761.robot.commands.drivetrain.DriveForward;
-import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
-import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
 
 /**
  * The VM is configured to automatically run this class, and to call the

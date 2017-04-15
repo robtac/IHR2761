@@ -12,6 +12,9 @@ package org.usfirst.frc.team2761.robot;
 
 public class RobotMap {
 	
+	// Global variables
+	public static boolean isBoilerAlignOnTarget = false;
+	
 	// Sets the IDs of the talons
 	public static int frontLeftDrive = 12;
 	public static int backLeftDrive = 13; // Has encoder
@@ -50,13 +53,13 @@ public class RobotMap {
     public static double shooterSpeed = 4000;
 //    public static double shooterSpeed = 91;
     
-    public static double defaultVisionP = 0.002;
-    public static double defaultVisionI = 0.000;
+    public static double defaultVisionP = 0.003;
+    public static double defaultVisionI = 0.00001;
     public static double defaultVisionD = 0.000;
     
-    public static double defaultVisionPivotP = 0.005;
-    public static double defaultVisionPivotI = 0.000;
-    public static double defaultVisionPivotD = 0.000;
+    public static double defaultVisionPivotP = 0.0062;
+    public static double defaultVisionPivotI = 0.0001;
+    public static double defaultVisionPivotD = 0.050;
     
     public static double defaultPivotSpeedP = 1.000;
     public static double defaultPivotSpeedI = 0.000;

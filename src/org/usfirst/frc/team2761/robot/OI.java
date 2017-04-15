@@ -11,13 +11,13 @@ import org.usfirst.frc.team2761.robot.commands.climber.RunClimberJoy;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ChangeDriverInput;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ForwardEncoderPID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.GearAlignBoilerPID;
+import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntake;
+import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntakeBack;
 import org.usfirst.frc.team2761.robot.commands.gearpivot.RunGearPivotBackwards;
 import org.usfirst.frc.team2761.robot.commands.gearpivot.RunGearPivotForward;
 import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseClose;
 import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
-import org.usfirst.frc.team2761.robot.commands.intake.RunGearIntake;
-import org.usfirst.frc.team2761.robot.commands.intake.RunGearIntakeBack;
-import org.usfirst.frc.team2761.robot.commands.paddle.runPaddle;
+import org.usfirst.frc.team2761.robot.commands.paddle.RunPaddle;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import org.usfirst.frc.team2761.robot.commands.shooter.Shoot;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShootPID;
@@ -46,6 +46,12 @@ public class OI {
 	public static JoystickButton climberTrigger = new JoystickButton(climberJoystick, 1);
 	public static JoystickButton climberThumbDown = new JoystickButton(climberJoystick, 2);
 	public static JoystickButton climberThumbRight = new JoystickButton(climberJoystick, 3);
+	public static JoystickButton climberLeft1 = new JoystickButton(climberJoystick, 5);
+	public static JoystickButton climberLeft2 = new JoystickButton(climberJoystick, 6);
+	public static JoystickButton climberLeft3 = new JoystickButton(climberJoystick, 7);
+	public static JoystickButton climberLeft4 = new JoystickButton(climberJoystick, 10);
+	public static JoystickButton climberLeft5 = new JoystickButton(climberJoystick, 9);
+	public static JoystickButton climberLeft6 = new JoystickButton(climberJoystick, 8);
 	
 	public static XboxController xbox = new XboxController(2);
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
@@ -69,6 +75,13 @@ public class OI {
 //		OI.leftTrigger.whenPressed(new PivotGyroPID(90));
 //		OI.rightTrigger.whenPressed(new ZeroEncoders());
 		
+		OI.climberLeft1.whenPressed(new AutoBlueLeft());
+		OI.climberLeft2.whenPressed(new AutoCenterGears());
+		OI.climberLeft3.whenPressed(new AutoBlueRight());
+		OI.climberLeft4.whenPressed(new AutoRedLeft());
+		OI.climberLeft5.whenPressed(new AutoBaseline());
+		OI.climberLeft6.whenPressed(new AutoRedRight());
+		
 		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		
 		OI.xbox.a.whileHeld(new RunGearIntake());
@@ -86,7 +99,7 @@ public class OI {
 //		OI.xbox.x.whileHeld(new RunClimberVariable());
 		OI.xbox.y.whileHeld(new RunClimber());
 		OI.xbox.start.whileHeld(new ShootPID());
-		OI.xbox.back.whileHeld(new runPaddle());
+		OI.xbox.back.whileHeld(new RunPaddle());
 //		OI.xbox.rb.whileHeld(new ChangeClimberSpeed(true));
 //		OI.xbox.lb.whileHeld(new ChangeClimberSpeed(false));
 //		OI.xbox.rb.whileHeld(new runPaddle());
