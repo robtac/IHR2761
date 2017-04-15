@@ -5,7 +5,7 @@ import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.auto.AutoBaseline;
 import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueLeft;
 import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueRight;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoCenterGears;
+import org.usfirst.frc.team2761.robot.commands.auto.AutoRedCenter;
 import org.usfirst.frc.team2761.robot.commands.auto.AutoRedLeft;
 import org.usfirst.frc.team2761.robot.commands.auto.AutoRedRight;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.DriveForward;
@@ -13,6 +13,7 @@ import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
 import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -36,7 +37,7 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	
-	AutoCenterGears gearsCenter;
+	AutoRedCenter gearsCenter;
 	AutoBaseline baseline;
 	AutoBlueLeft blueLeft;
 	AutoBlueRight blueRight;
@@ -45,6 +46,8 @@ public class Robot extends IterativeRobot {
 	DriveForward test;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
+	double lastAutoTime = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -63,7 +66,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
 		
-		gearsCenter = new AutoCenterGears();
+		gearsCenter = new AutoRedCenter();
 		baseline = new AutoBaseline();
 		blueLeft = new AutoBlueLeft();
 		blueRight = new AutoBlueRight();
@@ -109,7 +112,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
+		
+		lastAutoTime = Timer.getFPGATimestamp();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -128,6 +132,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		// Takes image from rpi
+		if (lastAutoTime < Timer.getFPGATimestamp() + 1) {
+			NetworkTable table = NetworkTable.getTable("gears");
+			table.putBoolean("takeImage", true);
+			lastAutoTime = Timer.getFPGATimestamp();
+		}
+		
 		Scheduler.getInstance().run();
 	}
 

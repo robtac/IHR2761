@@ -25,6 +25,9 @@ public class AutoBaseline extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new Drive(300));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	addSequential(new ForwardEncoderPID(200));
     }
 }

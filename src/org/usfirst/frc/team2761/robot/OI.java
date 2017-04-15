@@ -52,6 +52,12 @@ public class OI {
 	public static JoystickButton climberLeft4 = new JoystickButton(climberJoystick, 10);
 	public static JoystickButton climberLeft5 = new JoystickButton(climberJoystick, 9);
 	public static JoystickButton climberLeft6 = new JoystickButton(climberJoystick, 8);
+	public static JoystickButton climberRight1 = new JoystickButton(climberJoystick, 13);
+	public static JoystickButton climberRight2 = new JoystickButton(climberJoystick, 12);
+	public static JoystickButton climberRight3 = new JoystickButton(climberJoystick, 11);
+	public static JoystickButton climberRight4 = new JoystickButton(climberJoystick, 14);
+	public static JoystickButton climberRight5 = new JoystickButton(climberJoystick, 15);
+	public static JoystickButton climberRight6 = new JoystickButton(climberJoystick, 16);
 	
 	public static XboxController xbox = new XboxController(2);
 	public static JoystickButton buttonA = new JoystickButton(xbox, 1);
@@ -76,11 +82,12 @@ public class OI {
 //		OI.rightTrigger.whenPressed(new ZeroEncoders());
 		
 		OI.climberLeft1.whenPressed(new AutoBlueLeft());
-		OI.climberLeft2.whenPressed(new AutoCenterGears());
+		OI.climberLeft2.whenPressed(new AutoBlueCenter());
 		OI.climberLeft3.whenPressed(new AutoBlueRight());
 		OI.climberLeft4.whenPressed(new AutoRedLeft());
-		OI.climberLeft5.whenPressed(new AutoBaseline());
+		OI.climberLeft5.whenPressed(new AutoRedCenter());
 		OI.climberLeft6.whenPressed(new AutoRedRight());
+		OI.climberRight1.whenPressed(new AutoBaseline());
 		
 		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		
