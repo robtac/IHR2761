@@ -44,7 +44,7 @@ public class AutoBlueLeft extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new PivotGyroPID(38));
+    	addSequential(new PivotGyroPID(-38));
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));

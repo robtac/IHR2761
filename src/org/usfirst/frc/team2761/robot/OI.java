@@ -10,6 +10,7 @@ import org.usfirst.frc.team2761.robot.commands.climber.RunClimberFull;
 import org.usfirst.frc.team2761.robot.commands.climber.RunClimberJoy;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ChangeDriverInput;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ForwardEncoderPID;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.PivotGyroPID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.BoilerAlignPID;
 import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntake;
 import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntakeBack;
@@ -88,6 +89,9 @@ public class OI {
 		OI.climberLeft5.whenPressed(new AutoRedCenter());
 		OI.climberLeft6.whenPressed(new AutoRedRight());
 		OI.climberRight1.whenPressed(new AutoBaseline());
+		OI.climberRight2.whenPressed(new PivotGyroPID(-90));
+		OI.climberRight3.whenPressed(new PivotGyroPID(90));
+		OI.climberRight4.whenPressed(new ZeroGyro());
 		
 //		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		

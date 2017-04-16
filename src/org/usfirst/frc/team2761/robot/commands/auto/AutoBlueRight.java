@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
 import org.usfirst.frc.team2761.robot.Logger;
+import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
+import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -29,8 +31,40 @@ public class AutoBlueRight extends CommandGroup {
         // arm.
     	Logger.println("Starting auto blue right");
     	
-    	addSequential(new Drive(110));
-    	addSequential(new PivotGyroPID(62));
-    	addSequential(new Drive(85));
+    	addSequential(new ChangeCamera(true));
+    	
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ForwardEncoderPID(63));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new PivotGyroPID(38));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+//    	addSequential(new ForwardEncoderPID(40));
+//    	addSequential(new ZeroEncoders());
+//    	addSequential(new ZeroGyro());
+//    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new Wait(0.1));
+    	
+    	addSequential(new ChangeCamera(true));
+    	addSequential(new GearMovePID());
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new ForwardEncoderPID(4));
+    	addSequential(new ZeroEncoders());
+    	addSequential(new ZeroGyro());
+    	addSequential(new Wait(0.01));
+    	
+    	addSequential(new GearReleaseOpen());
     }
 }

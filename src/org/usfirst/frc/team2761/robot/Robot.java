@@ -2,12 +2,7 @@
 package org.usfirst.frc.team2761.robot;
 
 import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoBaseline;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueLeft;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoBlueRight;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoRedCenter;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoRedLeft;
-import org.usfirst.frc.team2761.robot.commands.auto.AutoRedRight;
+import org.usfirst.frc.team2761.robot.commands.auto.*;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.DriveForward;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
 import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
@@ -37,13 +32,13 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	
-	AutoRedCenter gearsCenter;
-	AutoBaseline baseline;
 	AutoBlueLeft blueLeft;
+	AutoBlueCenter blueCenter;
 	AutoBlueRight blueRight;
 	AutoRedLeft redLeft;
+	AutoRedCenter redCenter;
 	AutoRedRight redRight;
-	DriveForward test;
+	AutoBaseline baseline;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
@@ -67,21 +62,21 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
 		
-		gearsCenter = new AutoRedCenter();
-		baseline = new AutoBaseline();
 		blueLeft = new AutoBlueLeft();
+		blueCenter = new AutoBlueCenter();
 		blueRight = new AutoBlueRight();
 		redLeft = new AutoRedLeft();
+		redCenter = new AutoRedCenter();
 		redRight = new AutoRedRight();
-		test = new DriveForward(100);
+		baseline = new AutoBaseline();
 		
-		chooser.addObject("Center Gears", gearsCenter);
-		chooser.addObject("Pass Baseline", baseline);
 		chooser.addObject("Blue Left", blueLeft);
+		chooser.addObject("Blue Center", blueCenter);
 		chooser.addObject("Blue Right", blueRight);
 		chooser.addObject("Red Left", redLeft);
+		chooser.addObject("Red Center", redCenter);
 		chooser.addObject("Red Right", redRight);
-		chooser.addObject("Test", test);
+		chooser.addObject("Baseline", baseline);
 	}
 
 	/**
