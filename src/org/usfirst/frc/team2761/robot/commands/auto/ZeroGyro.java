@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
@@ -13,6 +14,7 @@ public class ZeroGyro extends InstantCommand {
 	
     public ZeroGyro() {
         super();
+        Logger.println("Zeroing the gyro");
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         driveTrain = DriveTrain.getInstance();

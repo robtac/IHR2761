@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.drivetrain;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
@@ -90,15 +91,16 @@ public class GearMovePID extends Command {
 			
 			pidController.enable();
 			
-			System.out.println("Vision P: " + kP);
+			Logger.println("GearMovePID init");
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("PIDController get: " + pidController.get() + 
+    	String s = ("PIDController get: " + pidController.get() + 
     			" --- PIDController error: " + pidController.getError() + 
     			" --- PIDController P: " + pidController.getP());
+    	Logger.println("GearMovePID - - " + s);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -157,6 +159,7 @@ public class GearMovePID extends Command {
     	System.out.println("GearMOvePID is finished!");
     	pidController.disable();
     	driveTrain.stop();
+    	Logger.println("Stopping GearMovePID");
     }
 
     // Called when another command which requires one or more of the same

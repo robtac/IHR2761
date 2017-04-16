@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2761.robot.commands;
 
+import org.usfirst.frc.team2761.robot.Logger;
+
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
@@ -13,6 +15,7 @@ public class ChangeCamera extends InstantCommand {
 	
     public ChangeCamera(boolean val) {
         super();
+        Logger.println("Changing camera to " + val);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         isGears = val;

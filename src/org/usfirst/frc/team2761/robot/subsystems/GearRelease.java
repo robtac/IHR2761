@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
@@ -22,6 +23,8 @@ public class GearRelease extends Subsystem {
 	DigitalInput limitIsOpen = new DigitalInput(RobotMap.GearReleaseOpenLimit);
 	
 	public GearRelease () {
+		Logger.println("Initialized GearRelease subsystem");
+		
 		gearRelease.enableBrakeMode(true);
 	}
 	

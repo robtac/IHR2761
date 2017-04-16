@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.OI;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.TankDrive;
@@ -37,6 +38,8 @@ public class DriveTrain extends Subsystem {
 	
 	// Initializes the drive train
 	public DriveTrain() {
+		Logger.println("Initialized DriveTrain subsystem");
+		
 		SmartDashboard.putNumber("Vision P", RobotMap.defaultVisionP);
 		SmartDashboard.putNumber("Vision I", RobotMap.defaultVisionI);
 		SmartDashboard.putNumber("Vision D", RobotMap.defaultVisionD);

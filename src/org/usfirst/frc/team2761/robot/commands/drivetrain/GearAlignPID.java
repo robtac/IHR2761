@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.drivetrain;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
@@ -89,13 +90,15 @@ public class GearAlignPID extends Command {
 			
 			System.out.println("Vision P: " + kP);
     	}
+    	Logger.println("GearAlignPID init");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("PIDController get: " + pidController.get() + 
+    	String s = ("PIDController get: " + pidController.get() + 
     			" --- PIDController error: " + pidController.getError() + 
     			" --- PIDController P: " + pidController.getP());
+    	Logger.println("GearAlignPID - - " + s);
     }
     
     // Make this return true when this Command no longer needs to run execute()
@@ -113,6 +116,7 @@ public class GearAlignPID extends Command {
     	pidController.disable();
     	pidController.free();
     	driveTrain.stop();
+    	Logger.println("Stopping GearAlignPID");
     }
 
     // Called when another command which requires one or more of the same

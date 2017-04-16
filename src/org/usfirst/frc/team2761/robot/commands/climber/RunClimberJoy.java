@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.climber;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.OI;
 import org.usfirst.frc.team2761.robot.subsystems.Climber;
 
@@ -21,6 +22,7 @@ public class RunClimberJoy extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Logger.println("Running climber joy");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,6 +42,7 @@ public class RunClimberJoy extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	climber.stop();
+    	Logger.println("Stopping climber joy");
     }
 
     // Called when another command which requires one or more of the same

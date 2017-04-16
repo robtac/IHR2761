@@ -10,7 +10,7 @@ import org.usfirst.frc.team2761.robot.commands.climber.RunClimberFull;
 import org.usfirst.frc.team2761.robot.commands.climber.RunClimberJoy;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ChangeDriverInput;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ForwardEncoderPID;
-import org.usfirst.frc.team2761.robot.commands.drivetrain.GearAlignBoilerPID;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.BoilerAlignPID;
 import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntake;
 import org.usfirst.frc.team2761.robot.commands.gearintake.RunGearIntakeBack;
 import org.usfirst.frc.team2761.robot.commands.gearpivot.RunGearPivotBackwards;
@@ -74,7 +74,7 @@ public class OI {
 		OI.leftThumbRight.whenPressed(new ForwardEncoderPID(-40));
 		
 		OI.climberThumbDown.whenPressed(new Gears());
-		OI.climberThumbRight.whenPressed(new GearAlignBoilerPID());
+		OI.climberThumbRight.whenPressed(new BoilerAlignPID());
 //		OI.rightTrigger.whileHeld(new Shoot());
 		OI.rightTrigger.whenPressed(new ChangeDriverInput(true));
 		OI.leftTrigger.whenPressed(new ChangeDriverInput(false));
@@ -89,7 +89,7 @@ public class OI {
 		OI.climberLeft6.whenPressed(new AutoRedRight());
 		OI.climberRight1.whenPressed(new AutoBaseline());
 		
-		OI.climberTrigger.whileHeld(new RunClimberJoy());
+//		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		
 		OI.xbox.a.whileHeld(new RunGearIntake());
 		OI.xbox.x.whileHeld(new RunGearIntakeBack());

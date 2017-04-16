@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.Logger;
+
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
@@ -11,6 +13,7 @@ public class Wait extends TimedCommand {
         super(timeout);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        Logger.println("Waiting for " + timeout + " seconds");
     }
 
     // Called just before this Command runs the first time

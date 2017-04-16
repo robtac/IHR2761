@@ -1,7 +1,8 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.commands.climber.ClimberJoystick;
+import org.usfirst.frc.team2761.robot.commands.climber.RunClimberJoy;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -22,6 +23,8 @@ public class Climber extends Subsystem {
 	CANTalon climber2 = new CANTalon (RobotMap.climb2);
 
 	public Climber () {
+		Logger.println("Initialized Climber subsystem");
+		
 		SmartDashboard.putNumber("ClimberSpeed", -0.25);
 		climber1.enableBrakeMode(true);
 		climber2.enableBrakeMode(true);
@@ -31,9 +34,9 @@ public class Climber extends Subsystem {
 	}
 	
 	public void setSpeed (double speed) {
-		climber1.set(Math.abs(speed));
+		climber1.set(-Math.abs(speed));
 		
-		climber2.set(Math.abs(speed));
+		climber2.set(-Math.abs(speed));
 	}
 	
 	public void stop () {
@@ -48,7 +51,7 @@ public class Climber extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ClimberJoystick());
+    	setDefaultCommand(new RunClimberJoy());
     }
 }
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.drivetrain;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,6 +24,7 @@ public class ChangeDriverInput extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Logger.println("Changing driver input to " + val);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -1,8 +1,9 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ForwardEncoderPID;
-import org.usfirst.frc.team2761.robot.commands.drivetrain.GearAlignBoilerPID;
+import org.usfirst.frc.team2761.robot.commands.drivetrain.BoilerAlignPID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.GearMovePID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.PivotGyroPID;
 import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
@@ -33,6 +34,8 @@ public class AutoBlueCenter extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	Logger.println("Starting auto blue center");
+    	
     	addSequential(new ChangeCamera(true));
     	
     	addSequential(new ZeroEncoders());
@@ -82,7 +85,7 @@ public class AutoBlueCenter extends CommandGroup {
 //    	
 //    	GearAlignBoilerPID a = new GearAlignBoilerPID();
 //    	addParallel(a);
-    	addParallel(new GearAlignBoilerPID());
+    	addParallel(new BoilerAlignPID());
     	addParallel(new RunPaddleGlobal());
     }
 }

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
 
 /**
@@ -25,6 +27,8 @@ public class AutoBaseline extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	Logger.println("Starting auto baseline");
+    	
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));

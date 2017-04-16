@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
@@ -17,6 +18,8 @@ public class GearIntake extends Subsystem {
 	CANTalon gearRoller = new CANTalon (RobotMap.gearRoller);
 	
 	public GearIntake () {
+		Logger.println("Initialized GearIntake subsystem");
+		
 		gearRoller.enableBrakeMode(true);
 	}
 	

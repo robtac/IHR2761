@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.commands.shooter.ShooterSet;
 import com.ctre.CANTalon;
@@ -23,7 +24,7 @@ public class Shooter extends Subsystem {
 	
 	// Initializes the main shooter motor and talon
 	public Shooter() {
-		System.out.println("Shooter const");
+		Logger.println("Initialized Shooter subsystem");
 		
 //		shooterMotor1.changeControlMode(TalonControlMode.Speed);
 //		shooterMotor1.set(0);

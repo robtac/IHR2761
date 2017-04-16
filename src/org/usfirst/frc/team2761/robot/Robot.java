@@ -57,6 +57,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		//NetworkTable.setServerMode();
 		//NetworkTable.initialize();
+		Logger.println("Robot init");
 		oi = new OI();
 		
 		new ChangeCamera(true);
@@ -90,7 +91,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		Logger.println("Robot disabled");
 	}
 
 	@Override
@@ -111,6 +112,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Logger.println("Start of auto");
 		autonomousCommand = chooser.getSelected();
 		
 		lastAutoTime = Timer.getFPGATimestamp();
@@ -148,6 +150,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		Logger.println("Start of teleop");
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		teleopDrive.start();
 	}

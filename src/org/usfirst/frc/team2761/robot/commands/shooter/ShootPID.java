@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.shooter;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.Shooter;
 
@@ -71,6 +72,7 @@ public class ShootPID extends Command {
 		pidController.setSetpoint(speed);
 		
 		pidController.enable();
+		Logger.println("ShootPID init");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -88,6 +90,7 @@ public class ShootPID extends Command {
     	pidController.disable();
     	pidController.free();
     	shooter.stop();
+    	Logger.println("Stopping ShootPID");
     }
 
     // Called when another command which requires one or more of the same

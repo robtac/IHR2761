@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
@@ -17,7 +18,7 @@ public class Paddle extends Subsystem {
 	CANTalon paddle = new CANTalon(RobotMap.ballAgitator);
 	
 	public Paddle () {
-		
+		Logger.println("Initialized Paddle subsystem");
 	}
 	
 	public void setSpeed () {

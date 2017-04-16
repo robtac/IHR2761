@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.gearrelease;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.subsystems.GearRelease;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,7 @@ public class GearReleaseOpen extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Logger.println("GearReleaseOpen init");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,6 +39,7 @@ public class GearReleaseOpen extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	gearRelease.stop();
+    	Logger.println("Stopping GearReleaseOpen");
     }
 
     // Called when another command which requires one or more of the same

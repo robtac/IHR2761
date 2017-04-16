@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
 import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
@@ -30,6 +31,7 @@ public class AutoRedCenter extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	Logger.println("Starting auto red center");
     	
     	addSequential(new ChangeCamera(true));
     	
@@ -80,7 +82,7 @@ public class AutoRedCenter extends CommandGroup {
 //    	
 //    	GearAlignBoilerPID a = new GearAlignBoilerPID();
 //    	addParallel(a);
-    	addParallel(new GearAlignBoilerPID());
+    	addParallel(new BoilerAlignPID());
     	addParallel(new RunPaddleGlobal());
     }
 }

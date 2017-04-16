@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.drivetrain;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 import org.usfirst.frc.team2761.robot.subsystems.DriveTrain;
 
@@ -105,6 +106,8 @@ public class PivotGyroPID extends Command {
 		
 		speedPIDController.enable();
 		additivePIDController.enable();
+		
+		Logger.println("PivotGyroPID init");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -125,6 +128,8 @@ public class PivotGyroPID extends Command {
     	additivePIDController.disable();
     	additivePIDController.free();
     	driveTrain.stop();
+    	
+    	Logger.println("Stopping PivotGyroPID");
     }
 
     // Called when another command which requires one or more of the same

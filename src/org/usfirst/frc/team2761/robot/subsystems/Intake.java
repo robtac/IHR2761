@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
 
 import com.ctre.CANTalon;
@@ -18,6 +19,8 @@ public class Intake extends Subsystem {
 	CANTalon intake = new CANTalon(RobotMap.intakeBelt);
 	
 	public Intake () {
+		Logger.println("Initialized Intake subsystem");
+		
 		intake.changeControlMode(TalonControlMode.PercentVbus);
 //		intake.setCurrentLimit(25);
 	}

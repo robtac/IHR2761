@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2761.robot.commands.auto;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -26,6 +27,8 @@ public class AutoRedLeft extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	Logger.println("Starting auto red left");
+    	
     	addSequential(new Drive(110));
     	addSequential(new PivotGyroPID(-62));
     	addSequential(new Drive(93));

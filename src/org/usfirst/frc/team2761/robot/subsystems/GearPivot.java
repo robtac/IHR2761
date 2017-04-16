@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2761.robot.subsystems;
 
+import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.RobotMap;
-import org.usfirst.frc.team2761.robot.commands.gearpivot.GearPivotHoldPosition;
 
 import com.ctre.CANTalon;
 
@@ -20,6 +20,8 @@ public class GearPivot extends Subsystem {
 	public CANTalon gearPivot = new CANTalon(RobotMap.gearPivot);
 	
 	public GearPivot () {
+		Logger.println("Initialized GearPivot subsystem");
+		
 		gearPivot.enableBrakeMode(true);
 	}
 	
@@ -38,7 +40,6 @@ public class GearPivot extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new GearPivotHoldPosition());
     }
 }
 
