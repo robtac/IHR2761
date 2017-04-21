@@ -90,7 +90,7 @@ public class ForwardEncoderPID extends Command {
     	speedPIDController = new PIDController(kPSpeed, kISpeed, kDSpeed, speedSource, speedOutput);
     	additivePIDController = new PIDController(kPAdditive, kIAdditive, kDAdditive, additiveSource, additiveOutput);
     	
-    	speedPIDController.setAbsoluteTolerance(5);
+    	speedPIDController.setAbsoluteTolerance(3);
     	additivePIDController.setAbsoluteTolerance(2);
 		
 		final double MAX_SPEED = 0.35;
@@ -114,6 +114,7 @@ public class ForwardEncoderPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	driveTrain.forward(speedPIDController.get(), additivePIDController.get());
+    	System.out.println("get: " + speedPIDController.get() + " - error: " + speedPIDController.getError() + " - onTarget: " + speedPIDController.onTarget());
     }
 
     // Make this return true when this Command no longer needs to run execute()

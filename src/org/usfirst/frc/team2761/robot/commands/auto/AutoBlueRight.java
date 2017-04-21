@@ -2,6 +2,7 @@ package org.usfirst.frc.team2761.robot.commands.auto;
 
 import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
+import org.usfirst.frc.team2761.robot.commands.climber.ReleaseClimber;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.*;
 import org.usfirst.frc.team2761.robot.commands.gearrelease.GearReleaseOpen;
 
@@ -32,6 +33,8 @@ public class AutoBlueRight extends CommandGroup {
     	Logger.println("Starting auto blue right");
     	
     	addSequential(new ChangeCamera(true));
+    	
+    	addParallel(new ReleaseClimber());
     	
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());

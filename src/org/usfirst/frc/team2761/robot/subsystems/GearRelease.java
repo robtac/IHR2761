@@ -41,7 +41,7 @@ public class GearRelease extends Subsystem {
 	}
 	
 	public boolean isFullOpen () {
-		return !limitIsOpen.get();
+		return limitIsOpen.get();
 	}
 	
 	public static GearRelease getInstance () {

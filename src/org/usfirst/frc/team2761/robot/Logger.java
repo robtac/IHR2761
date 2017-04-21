@@ -141,10 +141,11 @@ public class Logger {
     }
 
     private boolean printlnLocal(String s) {
-        return logMessages.offer('\n' + Timer.getFPGATimestamp() + " -- " + s);
+        return logMessages.offer("\n" + Timer.getFPGATimestamp() + " -- " + s);
     }
 
     public static boolean println(String s) {
+//    	System.out.println(s);
         return getInstance().printlnLocal(s);
     }
 }

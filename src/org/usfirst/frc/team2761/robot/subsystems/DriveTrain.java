@@ -36,6 +36,9 @@ public class DriveTrain extends Subsystem {
 	CANTalon backRightDrive = new CANTalon (RobotMap.backRightDrive);
 	RobotDrive driveTrain = new RobotDrive(frontLeftDrive, backLeftDrive, frontRightDrive, backRightDrive);
 	
+	Encoder leftEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+	Encoder rightEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X				);
+	
 	// Initializes the drive train
 	public DriveTrain() {
 		Logger.println("Initialized DriveTrain subsystem");
@@ -44,6 +47,8 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Vision I", RobotMap.defaultVisionI);
 		SmartDashboard.putNumber("Vision D", RobotMap.defaultVisionD);
 		
+		leftEncoder.setDistancePerPulse(1. / 630);
+		rightEncoder.setDistancePerPulse(1. / 630);
 		zeroEncoders();
 		
 		gyro = new AnalogGyro(0);
@@ -84,6 +89,8 @@ public class DriveTrain extends Subsystem {
 			// Intake forwards
 			driveTrain.tankDrive(OI.leftJoystick.getY() * -1, OI.rightJoystick.getY() * -1);
 		}
+		
+		System.out.println("Left: " + getLeftDistance() + " -- Right: " + getRightDistance() + " -- Gyro: " + getAngle());
 	}
 	
 	public void setInput (Boolean input) {
@@ -132,6 +139,8 @@ public class DriveTrain extends Subsystem {
 		backLeftDrive.set(leftSpeed);
 		frontRightDrive.set(rightSpeed);
 		backRightDrive.set(rightSpeed);
+		
+//		System.out.println("Left: " + getLeftDistance() + " -- Right: " + getRightDistance());
 	}
 	
 	public void pivot (double speed) {
@@ -195,11 +204,13 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public double getLeftDistance () {
-		return backLeftDrive.getPosition() * 4 * Math.PI;
+//		return backLeftDrive.getPosition() * 4 * Math.PI;
+		return leftEncoder.getDistance() * 4 * Math.PI;
 	}
 	
 	public double getRightDistance () {
-		return frontRightDrive.getPosition() * 4 * Math.PI;
+//		return frontRightDrive.getPosition() * 4 * Math.PI;
+		return rightEncoder.getDistance() * 4 * Math.PI;
 	}
 	
 	public double getDistance () {
@@ -209,8 +220,10 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void zeroEncoders () {
-		backLeftDrive.setEncPosition(0);
-		frontRightDrive.setEncPosition(0);
+//		backLeftDrive.setEncPosition(0);
+//		frontRightDrive.setEncPosition(0);
+		leftEncoder.reset();
+		rightEncoder.reset();
 	}
 	
 	// Sets the default running command

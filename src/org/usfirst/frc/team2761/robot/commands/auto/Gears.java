@@ -3,6 +3,7 @@ package org.usfirst.frc.team2761.robot.commands.auto;
 import org.usfirst.frc.team2761.robot.Logger;
 import org.usfirst.frc.team2761.robot.commands.ChangeCamera;
 import org.usfirst.frc.team2761.robot.commands.auto.*;
+import org.usfirst.frc.team2761.robot.commands.climber.ReleaseClimber;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.ForwardEncoderPID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.BoilerAlignPID;
 import org.usfirst.frc.team2761.robot.commands.drivetrain.GearMovePID;
@@ -41,44 +42,27 @@ public class Gears extends CommandGroup {
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new ForwardEncoderPID(63));
+    	addParallel(new ReleaseClimber());
+    	
+    	addSequential(new ForwardEncoderPID(20));
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
-    	
-    	addSequential(new PivotGyroPID(35));
-    	addSequential(new ZeroEncoders());
-    	addSequential(new ZeroGyro());
-    	addSequential(new Wait(0.01));
-    	
-//    	addSequential(new ForwardEncoderPID(40));
-//    	addSequential(new ZeroEncoders());
-//    	addSequential(new ZeroGyro());
-//    	addSequential(new Wait(0.01));
     	
     	addSequential(new ChangeCamera(true));
+    	addSequential(new Wait(0.2));
     	addSequential(new GearMovePID());
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
-    	addSequential(new ForwardEncoderPID(8));
+    	addSequential(new ForwardEncoderPID(4));
     	addSequential(new ZeroEncoders());
     	addSequential(new ZeroGyro());
     	addSequential(new Wait(0.01));
     	
     	addSequential(new GearReleaseOpen());
     	
-    	addSequential(new ForwardEncoderPID(-20));
-    	addSequential(new ZeroEncoders());
-    	addSequential(new ZeroGyro());
-    	addSequential(new Wait(0.01));
     	
-    	addSequential(new ChangeCamera(false));
-    	addSequential(new ZeroEncoders());
-    	addSequential(new ZeroGyro());
-    	addSequential(new Wait(0.2));
-//    	
-    	addSequential(new BoilerAlignPID());
     }
 }

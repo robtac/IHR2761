@@ -82,16 +82,18 @@ public class OI {
 //		OI.leftTrigger.whenPressed(new PivotGyroPID(90));
 //		OI.rightTrigger.whenPressed(new ZeroEncoders());
 		
-		OI.climberLeft1.whenPressed(new AutoBlueLeft());
-		OI.climberLeft2.whenPressed(new AutoBlueCenter());
+		OI.climberLeft1.whenPressed(new AutoBlueLeftShoot());
+		OI.climberLeft2.whenPressed(new AutoBlueCenterShoot());
 		OI.climberLeft3.whenPressed(new AutoBlueRight());
 		OI.climberLeft4.whenPressed(new AutoRedLeft());
-		OI.climberLeft5.whenPressed(new AutoRedCenter());
-		OI.climberLeft6.whenPressed(new AutoRedRight());
+		OI.climberLeft5.whenPressed(new AutoRedCenterShoot());
+		OI.climberLeft6.whenPressed(new AutoRedRightShoot());
 		OI.climberRight1.whenPressed(new AutoBaseline());
 		OI.climberRight2.whenPressed(new PivotGyroPID(-90));
 		OI.climberRight3.whenPressed(new PivotGyroPID(90));
 		OI.climberRight4.whenPressed(new ZeroGyro());
+		OI.climberRight5.whenPressed(new ZeroEncoders());
+		OI.climberRight6.whenPressed(new ForwardEncoderPID(50));
 		
 //		OI.climberTrigger.whileHeld(new RunClimberJoy());
 		
@@ -102,7 +104,7 @@ public class OI {
 		OI.xbox.lt.whileHeld(new RunGearPivotBackwards());
 		
 		OI.xbox.lb.whileHeld(new GearReleaseClose());
-		OI.xbox.rb.whenPressed(new GearReleaseOpen());
+		OI.xbox.rb.whileHeld(new GearReleaseOpen());
 		
 //		OI.xbox.a.whileHeld(new RunIntake());
 //		OI.xbox.x.whileHeld(new RunGearIntake());

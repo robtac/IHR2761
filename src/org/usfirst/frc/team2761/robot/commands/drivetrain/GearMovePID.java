@@ -92,6 +92,8 @@ public class GearMovePID extends Command {
 			pidController.enable();
 			
 			Logger.println("GearMovePID init");
+    	} else {
+    		new ForwardEncoderPID(80);
     	}
     }
 

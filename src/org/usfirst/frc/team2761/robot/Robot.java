@@ -32,12 +32,16 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	
-	AutoBlueLeft blueLeft;
-	AutoBlueCenter blueCenter;
+	AutoBlueLeftShoot blueLeftShoot;
+//	AutoBlueLeftNoShoot blueLeftNoShoot;
+	AutoBlueCenterShoot blueCenterShoot;
+//	AutoBlueCenterNoShoot blueCenterNoShoot;
 	AutoBlueRight blueRight;
 	AutoRedLeft redLeft;
-	AutoRedCenter redCenter;
-	AutoRedRight redRight;
+	AutoRedCenterShoot redCenterShoot;
+//	AutoRedCenterNoShoot redCenterNoShoot;
+	AutoRedRightShoot redRightShoot;
+//	AutoRedRightNoShoot redRightNoShoot;
 	AutoBaseline baseline;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -62,21 +66,29 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopDrive = new TankDrive();
 		
-		blueLeft = new AutoBlueLeft();
-		blueCenter = new AutoBlueCenter();
+		blueLeftShoot = new AutoBlueLeftShoot();
+//		blueLeftNoShoot = new AutoBlueLeftNoShoot();
+		blueCenterShoot = new AutoBlueCenterShoot();
+//		blueCenterNoShoot = new AutoBlueCenterNoShoot();
 		blueRight = new AutoBlueRight();
 		redLeft = new AutoRedLeft();
-		redCenter = new AutoRedCenter();
-		redRight = new AutoRedRight();
+		redCenterShoot = new AutoRedCenterShoot();
+//		redCenterNoShoot = new AutoRedCenterNoShoot();
+		redRightShoot = new AutoRedRightShoot();
+//		redRightNoShoot = new AutoRedRightNoShoot();
 		baseline = new AutoBaseline();
 		
-		chooser.addObject("Blue Left", blueLeft);
-		chooser.addObject("Blue Center", blueCenter);
+		chooser.addObject("Blue Left Shoot", blueLeftShoot);
+//		chooser.addObject("Blue Left No Shoot", blueLeftNoShoot);
+		chooser.addObject("Blue Center Shoot", blueCenterShoot);
+//		chooser.addObject("Blue Center No Shoot", blueCenterNoShoot);
 		chooser.addObject("Blue Right", blueRight);
 		chooser.addObject("Red Left", redLeft);
-		chooser.addObject("Red Center", redCenter);
-		chooser.addObject("Red Right", redRight);
-		chooser.addObject("Baseline", baseline);
+		chooser.addObject("Red Center Shoot", redCenterShoot);
+//		chooser.addObject("Red Center No Shoot", redCenterNoShoot);
+		chooser.addObject("Red Right Shoot", redRightShoot);
+//		chooser.addObject("Red Right No Shoot", redRightNoShoot);
+		chooser.addObject("Baseline Shoot", baseline);
 	}
 
 	/**
@@ -131,7 +143,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		// Takes image from rpi
 		if (lastAutoTime < Timer.getFPGATimestamp() + 1) {
-			NetworkTable table = NetworkTable.getTable("gears");
+			NetworkTable table = NetworkTable.getTable("Gears");
 			table.putBoolean("takeImage", true);
 			lastAutoTime = Timer.getFPGATimestamp();
 		}

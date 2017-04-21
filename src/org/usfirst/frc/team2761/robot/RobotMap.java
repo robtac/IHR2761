@@ -36,8 +36,8 @@ public class RobotMap {
 	public static int shooterAngleX = 30; // Deprecated
 	public static int shooterAngleY = 31; // Deprecated
 	
-	public static int GearReleaseClosedLimit = 0;
-	public static int GearReleaseOpenLimit = 1;
+	public static int GearReleaseClosedLimit = 4;
+	public static int GearReleaseOpenLimit = 5;
 	
 	// Sets the IDs of the MagHall sensors
 	public static int LimitX1 = 2;
